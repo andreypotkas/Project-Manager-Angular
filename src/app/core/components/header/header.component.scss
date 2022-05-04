@@ -1,0 +1,10 @@
+:host{
+    display: flex;
+    justify-content: space-between;
+
+    .auth-btns{
+        display: flex;
+        column-gap: 30px;
+        align-items: center;
+    }
+}
