@@ -18,7 +18,7 @@
     }
   },
   "lint-staged": {
-    "*.{js,json,md,html}": [
+    "*.{ts, scss, css, js,json,md,html}": [
       "prettier --write"
     ],
     "*.ts": [
@@ -38,6 +38,7 @@
     "@angular/platform-browser": "~13.3.0",
     "@angular/platform-browser-dynamic": "~13.3.0",
     "@angular/router": "~13.3.0",
+    "primeflex": "^3.1.3",
     "primeicons": "^5.0.0",
     "primeng": "^13.3.3",
     "rxjs": "~7.5.0",
