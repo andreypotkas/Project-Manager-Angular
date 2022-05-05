@@ -18,7 +18,7 @@ export class SigninComponent implements OnInit {
     login: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
   });
-  constructor(public authService: AuthService) {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {}
   public get loginSignin(): AbstractControl {

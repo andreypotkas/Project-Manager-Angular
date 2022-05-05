@@ -9,7 +9,7 @@ import { IToken, IUser } from '../../auth/models/auth.model';
 })
 export class AuthService {
   public token: string | null;
-  constructor(public http: HttpClient, public router: Router) {
+  constructor(private http: HttpClient, private router: Router) {
     this.token = localStorage.getItem('token');
   }
   public checkToken(): void {
