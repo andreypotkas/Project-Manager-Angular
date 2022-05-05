@@ -14,13 +14,13 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo:'signin',
-    pathMatch:'full',
+    redirectTo: 'signin',
+    pathMatch: 'full',
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AuthRoutingModule { }
+export class AuthRoutingModule {}
