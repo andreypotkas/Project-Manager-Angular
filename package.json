@@ -14,26 +14,6 @@
     "precommit": "lint-staged",
     "prepare": "husky install"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{ts, scss, css, js,json,md,html}": [
-      "prettier --write",
-      "eslint --fix"
-    ],
-    "*.ts": [
-      "prettier --write",
-      "eslint --fix"
-    ],
-    "*.(css|scss)": [
-      "prettier --write",
-      "eslint --fix",
-      "stylelint --fix"
-    ]
-  },
   "private": true,
   "dependencies": {
     "@angular/animations": "~13.3.0",
