@@ -1,12 +1,12 @@
-:host{
-    display: flex;
-    flex-direction: column;
-    max-width: 1280px;
-    margin: 0 auto;
-    text-align: center;
+:host {
+  display: flex;
+  flex-direction: column;
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
 
-    .team-description{
-        display: flex;
-        justify-content: space-around;
-    }
+  .team-description {
+    display: flex;
+    justify-content: space-around;
+  }
 }

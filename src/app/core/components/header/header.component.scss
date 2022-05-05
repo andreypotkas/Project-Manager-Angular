@@ -1,10 +1,10 @@
-:host{
-    display: flex;
-    justify-content: space-between;
+:host {
+  display: flex;
+  justify-content: space-between;
 
-    .auth-btns{
-        display: flex;
-        column-gap: 30px;
-        align-items: center;
-    }
+  .auth-btns {
+    display: flex;
+    align-items: center;
+    column-gap: 30px;
+  }
 }
