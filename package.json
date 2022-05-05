@@ -10,7 +10,9 @@
     "lint": "ng lint",
     "prettier": "prettier --write src/**/*.{js,ts,css,scss}",
     "stylelint": "stylelint '**/*{.css,.scss}'",
-    "stylelint:fix": "stylelint '**/*{.css,.scss}' --fix"
+    "stylelint:fix": "stylelint '**/*{.css,.scss}' --fix",
+    "precommit": "lint-staged",
+    "prepare": "husky install"
   },
   "husky": {
     "hooks": {
@@ -19,12 +21,16 @@
   },
   "lint-staged": {
     "*.{ts, scss, css, js,json,md,html}": [
-      "prettier --write"
+      "prettier --write",
+      "eslint --fix"
     ],
     "*.ts": [
+      "prettier --write",
       "eslint --fix"
     ],
     "*.(css|scss)": [
+      "prettier --write",
+      "eslint --fix",
       "stylelint --fix"
     ]
   },
@@ -59,7 +65,7 @@
     "@typescript-eslint/eslint-plugin": "5.17.0",
     "@typescript-eslint/parser": "5.17.0",
     "eslint": "^8.12.0",
-    "husky": "^7.0.4",
+    "husky": "^7.0.0",
     "jasmine-core": "~4.0.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",
