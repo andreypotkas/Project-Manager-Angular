@@ -5,6 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { take } from 'rxjs';
 import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class SigninComponent implements OnInit {
     login: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
   });
-  constructor(public authService: AuthService) {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {}
   public get loginSignin(): AbstractControl {
@@ -29,6 +30,7 @@ export class SigninComponent implements OnInit {
   signin() {
     this.authService
       .signin(this.userSignin.value)
+      .pipe(take(1))
       .subscribe((token: string) => {
         console.log(token);
         this.authService.saveToken(token);

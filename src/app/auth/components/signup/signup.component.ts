@@ -5,6 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { take } from 'rxjs';
 import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
@@ -18,7 +19,7 @@ export class SignupComponent implements OnInit {
     login: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
   });
-  constructor(public authService: AuthService) {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {}
   public get nameSignup(): AbstractControl {
@@ -33,6 +34,7 @@ export class SignupComponent implements OnInit {
   signup() {
     this.authService
       .signup(this.userSignup.value)
+      .pipe(take(1))
       .subscribe((token: string) => {
         console.log(token);
         this.authService.saveToken(token);

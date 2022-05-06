@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { map, mergeMap, Observable, take } from 'rxjs';
+import { map, mergeMap, Observable } from 'rxjs';
 import { IToken, IUser } from '../../auth/models/auth.model';
 
 @Injectable({
@@ -9,7 +9,7 @@ import { IToken, IUser } from '../../auth/models/auth.model';
 })
 export class AuthService {
   public token: string | null;
-  constructor(public http: HttpClient, public router: Router) {
+  constructor(private http: HttpClient, private router: Router) {
     this.token = localStorage.getItem('token');
   }
   public checkToken(): void {
@@ -22,7 +22,6 @@ export class AuthService {
   }
   public signup(data: IUser): Observable<any> {
     return this.http.post('/api/signup', data).pipe(
-      take(1),
       mergeMap(() =>
         this.http.post<IToken>('/api/signin', {
           login: data.login,
@@ -33,10 +32,9 @@ export class AuthService {
     );
   }
   public signin(data: IUser): Observable<any> {
-    return this.http.post<IToken>('/api/signin', data).pipe(
-      take(1),
-      map((data: IToken) => data.token)
-    );
+    return this.http
+      .post<IToken>('/api/signin', data)
+      .pipe(map((data: IToken) => data.token));
   }
   saveToken(token: string) {
     this.token = token;
