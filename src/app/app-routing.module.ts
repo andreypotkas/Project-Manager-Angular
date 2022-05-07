@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SigninComponent } from './auth/components/signin/signin.component';
-import { SignupComponent } from './auth/components/signup/signup.component';
 import { AuthGuard } from './auth/guards/auth.guard';
+import { NotFoundPageComponent } from './core/components/not-found-page/not-found-page.component';
 import { WelcomeComponent } from './core/components/welcome/welcome.component';
 
 const routes: Routes = [
@@ -24,6 +23,10 @@ const routes: Routes = [
     path: '',
     redirectTo: 'welcome',
     pathMatch: 'full',
+  },
+  {
+    path: '**',
+    component: NotFoundPageComponent,
   },
 ];
 
