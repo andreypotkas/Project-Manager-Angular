@@ -10,7 +10,9 @@ import { IToken, IUser } from '../../auth/models/auth.model';
 export class AuthService {
   public token: string | null;
   constructor(private http: HttpClient, private router: Router) {
-    this.token = localStorage.getItem('token');
+    this.token = localStorage.getItem('token')
+      ? localStorage.getItem('token')
+      : '';
   }
   public checkToken(): void {
     if (localStorage.getItem('token')) {
@@ -21,9 +23,9 @@ export class AuthService {
     }
   }
   public signup(data: IUser): Observable<any> {
-    return this.http.post('/api/signup', data).pipe(
+    return this.http.post('signup', data).pipe(
       mergeMap(() =>
-        this.http.post<IToken>('/api/signin', {
+        this.http.post<IToken>('signin', {
           login: data.login,
           password: data.password,
         })
@@ -33,12 +35,16 @@ export class AuthService {
   }
   public signin(data: IUser): Observable<any> {
     return this.http
-      .post<IToken>('/api/signin', data)
+      .post<IToken>('signin', data)
       .pipe(map((data: IToken) => data.token));
   }
   saveToken(token: string) {
     this.token = token;
     localStorage.setItem('token', token);
+  }
+
+  public getUserToken(): string {
+    return String(this.token);
   }
 
   /* getUsers(){

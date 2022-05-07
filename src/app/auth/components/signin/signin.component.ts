@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -13,14 +13,12 @@ import { AuthService } from '../../../core/services/auth.service';
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.scss'],
 })
-export class SigninComponent implements OnInit {
+export class SigninComponent {
   public userSignin = new FormGroup({
     login: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
   });
   constructor(private authService: AuthService) {}
-
-  ngOnInit(): void {}
   public get loginSignin(): AbstractControl {
     return this.userSignin.get('login') as AbstractControl;
   }
@@ -32,7 +30,6 @@ export class SigninComponent implements OnInit {
       .signin(this.userSignin.value)
       .pipe(take(1))
       .subscribe((token: string) => {
-        console.log(token);
         this.authService.saveToken(token);
       });
   }
