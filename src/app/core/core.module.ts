@@ -9,6 +9,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { StyleClassModule } from 'primeng/styleclass';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { CardModule } from 'primeng/card';
+import { FooterComponent } from './components/footer/footer.component';
 
 export const PrimengModule = [
   ButtonModule,
@@ -19,7 +20,7 @@ export const PrimengModule = [
 ];
 
 @NgModule({
-  declarations: [HeaderComponent, WelcomeComponent],
+  declarations: [HeaderComponent, WelcomeComponent, FooterComponent],
   imports: [
     CommonModule,
     PrimengModule,
@@ -27,6 +28,6 @@ export const PrimengModule = [
     AppRoutingModule,
     StyleClassModule,
   ],
-  exports: [HeaderComponent],
+  exports: [HeaderComponent, FooterComponent],
 })
 export class CoreModule {}
