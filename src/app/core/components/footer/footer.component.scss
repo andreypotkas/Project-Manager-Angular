@@ -1,14 +1,17 @@
 :host {
   display: flex;
   justify-content: space-between;
+  flex: 0 0 auto;
 
   .rs {
     height: 50px;
   }
+
   .team-githubs {
     display: flex;
     align-items: center;
     column-gap: 20px;
+
     a {
       text-decoration: none;
       display: flex;
