@@ -7,6 +7,12 @@
   ],
   "plugins": ["stylelint-order", "stylelint-scss"],
   "rules": {
-    "at-rule-empty-line-before": null
+    "at-rule-empty-line-before": null,
+    "selector-pseudo-element-no-unknown": [
+      true,
+      {
+        "ignorePseudoElements": ["ng-deep"]
+      }
+    ]
   }
 }
