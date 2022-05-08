@@ -1,32 +1,78 @@
-<h1>Welcome</h1>
-
 <div>
-    <h2>Project Manager</h2>
-    <p>Project Manager помогает командам эффективно решать рабочие задачи.</p>
-    <p>Работайте в команде, управляйте проектами и выводите продуктивность на новый уровень собственным уникальным способом вместе с Project Manager.</p>
-    <button pButton pRipple label="create an account to get started" icon="pi pi-user"></button>
-</div>
-
-<div>
-    <h2>Our team</h2>
-    <div class="team-description">
-        <p-card header="Name" subheader="Developer" [style]="{width: '360px'}" styleClass="p-card-shadow">
-            <ng-template pTemplate="header">
-                <img alt="Card" src="assets/showcase/images/usercard.png">
-            </ng-template>
-            <p>Description</p>
-        </p-card>
-        <p-card header="Name" subheader="Developer" [style]="{width: '360px'}" styleClass="p-card-shadow">
-            <ng-template pTemplate="header">
-                <img alt="Card" src="assets/showcase/images/usercard.png">
-            </ng-template>
-            <p>Description</p>
-        </p-card>
-        <p-card header="Name" subheader="Developer" [style]="{width: '360px'}" styleClass="p-card-shadow">
-            <ng-template pTemplate="header">
-                <img alt="Card" src="assets/showcase/images/usercard.png">
-            </ng-template>
-            <p>Description</p>
-        </p-card>
+  <h2 class="welcome-title">Welcome to Project Manager</h2>
+  <p>Project Manager помогает командам эффективно решать рабочие задачи.</p>
+  <p>
+    Работайте в команде, управляйте проектами и выводите продуктивность на новый
+    уровень собственным уникальным способом вместе с Project Manager.
+  </p>
+  <button
+    routerLink="/authorization/signup"
+    class="start-btn callback-bt"
+    pButton
+    pRipple
+    label="create an account to get started"
+    icon="pi pi-user"
+  ></button>
+  <h2>Project Manager это координация действий в команде</h2>
+  <div>
+    Начните с досок, колонок и карточек, а затем переходите к более сложным
+    функциям. Управляйте проектами, упорядочивайте задачи и поддерживайте
+    командный дух — все это в Project Manager.
+    <div class="prewiew-img">
+      <img src="../../../../assets/images/board.png" alt="board" />
     </div>
+  </div>
+</div>
+<div class="team">
+  <h2>Our team</h2>
+  <div class="team-description">
+    <p-card
+      class="team-card"
+      header="Vladimir"
+      subheader="Front-end Developer"
+      [style]="{ width: '360px' }"
+      styleClass="p-card-shadow"
+    >
+      <ng-template pTemplate="header">
+        <img
+          class="avatar"
+          alt="Card"
+          src="../../../../assets/images/avatar.png"
+        />
+      </ng-template>
+      <p>Description</p>
+    </p-card>
+    <p-card
+      class="team-card"
+      header="Daniil"
+      subheader="Front-end Developer"
+      [style]="{ width: '360px' }"
+      styleClass="p-card-shadow"
+    >
+      <ng-template pTemplate="header">
+        <img
+          class="avatar"
+          alt="Card"
+          src="../../../../assets/images/avatar.png"
+        />
+      </ng-template>
+      <p>Description</p>
+    </p-card>
+    <p-card
+      class="team-card"
+      header="Andrey"
+      subheader="Front-end Developer"
+      [style]="{ width: '360px' }"
+      styleClass="p-card-shadow"
+    >
+      <ng-template pTemplate="header">
+        <img
+          class="avatar"
+          alt="Card"
+          src="../../../../assets/images/avatar.png"
+        />
+      </ng-template>
+      <p>Description</p>
+    </p-card>
+  </div>
 </div>
