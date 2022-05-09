@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   ConfirmationService,
@@ -6,6 +6,7 @@ import {
   MessageService,
 } from 'primeng/api';
 import { BoardItem } from '../../models/boardItem.model';
+import { BoardsService } from '../../services/boards.service';
 
 @Component({
   selector: 'app-boards',
@@ -13,30 +14,75 @@ import { BoardItem } from '../../models/boardItem.model';
   styleUrls: ['./boards.component.scss'],
   providers: [MessageService, ConfirmationService],
 })
-export class BoardsComponent {
+export class BoardsComponent implements OnInit {
+  loading: boolean = true;
   boards: BoardItem[] = [
     {
       id: '1',
-      title: 'Test',
+      title: 'Board 1',
+    },
+    {
+      id: '2',
+      title: 'Board 2',
+    },
+    {
+      id: '3',
+      title: 'Board 3',
+    },
+    {
+      id: '4',
+      title: 'Board 4',
     },
   ];
+
   constructor(
     private router: Router,
     private confirmationService: ConfirmationService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private boardsService: BoardsService
   ) {}
+
+  ngOnInit(): void {
+    this.boardsService.getBoards().subscribe(() => {
+      this.loading = false;
+    });
+  }
 
   goToBoard(id: string) {
     this.router.navigate(['/boards/', id]);
   }
   deleteBoard(id: string) {
-    console.log(1);
     this.confirmationService.confirm({
-      message: 'Are you sure that you want to proceed?',
-      header: 'Confirmation',
-      icon: 'pi pi-exclamation-triangle',
-      accept: () => {},
-      reject: () => {},
+      message: 'Do you want to delete this board?',
+      header: 'Delete Confirmation',
+      icon: 'pi pi-info-circle',
+      accept: () => {
+        this.boardsService.deleteBoard(id).subscribe(() => {
+          this.messageService.add({
+            severity: 'info',
+            summary: 'Confirmed',
+            detail: 'Board deleted',
+          });
+        });
+      },
+      reject: (type: ConfirmEventType) => {
+        switch (type) {
+          case ConfirmEventType.REJECT:
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Rejected',
+              detail: 'You have rejected',
+            });
+            break;
+          case ConfirmEventType.CANCEL:
+            this.messageService.add({
+              severity: 'warn',
+              summary: 'Cancelled',
+              detail: 'You have cancelled',
+            });
+            break;
+        }
+      },
     });
   }
 }

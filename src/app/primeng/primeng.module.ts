@@ -9,6 +9,7 @@ import { OrderListModule } from 'primeng/orderlist';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { DataViewModule } from 'primeng/dataview';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ToastModule } from 'primeng/toast';
 @NgModule({
   declarations: [],
   imports: [
@@ -22,6 +23,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     DragDropModule,
     DataViewModule,
     ConfirmDialogModule,
+    ToastModule,
   ],
   exports: [
     CommonModule,
@@ -34,6 +36,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     DragDropModule,
     DataViewModule,
     ConfirmDialogModule,
+    ToastModule,
   ],
 })
 export class PrimengModule {}
