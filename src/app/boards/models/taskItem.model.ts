@@ -12,6 +12,16 @@ export interface TaskItem {
   files: FileItem[];
 }
 
+export interface TaskItemResponse {
+  id: string;
+  title: string;
+  done: boolean;
+  order: number;
+  description: string;
+  userId: string;
+  files: FileItem[];
+}
+
 export interface CreateTaskItem {
   title: string;
   done: boolean;
