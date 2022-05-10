@@ -5,6 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { take } from 'rxjs';
 import { AuthService } from '../../../core/services/auth.service';
 
@@ -18,7 +19,7 @@ export class SigninComponent {
     login: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
   });
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
   public get loginSignin(): AbstractControl {
     return this.userSignin.get('login') as AbstractControl;
   }
@@ -31,6 +32,7 @@ export class SigninComponent {
       .pipe(take(1))
       .subscribe((token: string) => {
         this.authService.saveToken(token);
+        this.router.navigate(['/boards']);
       });
   }
 }

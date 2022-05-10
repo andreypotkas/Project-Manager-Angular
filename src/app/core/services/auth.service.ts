@@ -38,13 +38,17 @@ export class AuthService {
       .post<IToken>('signin', data)
       .pipe(map((data: IToken) => data.token));
   }
-  saveToken(token: string) {
+  public saveToken(token: string) {
     this.token = token;
     localStorage.setItem('token', token);
   }
 
   public getUserToken(): string {
     return String(this.token);
+  }
+
+  get isLoggedIn(): boolean {
+    return !!this.token;
   }
 
   /* getUsers(){

@@ -1,0 +1,39 @@
+:host ::ng-deep {
+  .p-grid {
+    display: block;
+  }
+
+  .board-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  .board-list-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    width: 100%;
+
+    .board-list-detail {
+      flex: 1 1 0;
+    }
+
+    .board-list-action {
+      display: flex;
+      justify-content: space-between;
+      width: 200px;
+    }
+
+    .p-button {
+      margin-bottom: 0.5rem;
+    }
+  }
+}
+
+.card {
+  padding: 2rem;
+  box-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%),
+    0 1px 3px 0 rgb(0 0 0 / 12%);
+  border-radius: 4px;
+  margin-bottom: 2rem;
+}

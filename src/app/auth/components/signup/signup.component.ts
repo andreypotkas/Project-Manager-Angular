@@ -37,7 +37,7 @@ export class SignupComponent {
       .signup(this.userSignup.value)
       .pipe(take(1))
       .subscribe(() => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/boards']);
       });
   }
 }

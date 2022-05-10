@@ -3,22 +3,14 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from '../app-routing.module';
 import { HeaderComponent } from './components/header/header.component';
-import { ButtonModule } from 'primeng/button';
-import { CheckboxModule } from 'primeng/checkbox';
-import { InputTextModule } from 'primeng/inputtext';
-import { StyleClassModule } from 'primeng/styleclass';
+
 import { WelcomeComponent } from './components/welcome/welcome.component';
-import { CardModule } from 'primeng/card';
 import { FooterComponent } from './components/footer/footer.component';
+import { BoardsModule } from '../boards/boards.module';
+import { PrimengModule } from '../primeng/primeng.module';
 
-export const PrimengModule = [
-  ButtonModule,
-  CheckboxModule,
-  InputTextModule,
-  StyleClassModule,
-  CardModule,
-];
-
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
 @NgModule({
   declarations: [HeaderComponent, WelcomeComponent, FooterComponent],
   imports: [
@@ -26,8 +18,16 @@ export const PrimengModule = [
     PrimengModule,
     BrowserModule,
     AppRoutingModule,
-    StyleClassModule,
+    BoardsModule,
+    MessagesModule,
+    MessageModule,
   ],
-  exports: [HeaderComponent, FooterComponent],
+  exports: [
+    HeaderComponent,
+    FooterComponent,
+    PrimengModule,
+    MessagesModule,
+    MessageModule,
+  ],
 })
 export class CoreModule {}
