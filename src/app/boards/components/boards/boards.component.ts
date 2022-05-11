@@ -5,6 +5,7 @@ import {
   ConfirmEventType,
   MessageService,
 } from 'primeng/api';
+import { BehaviorSubject } from 'rxjs';
 import { BoardItem } from '../../models/boardItem.model';
 import { BoardsService } from '../../services/boards.service';
 
@@ -16,28 +17,8 @@ import { BoardsService } from '../../services/boards.service';
 })
 export class BoardsComponent implements OnInit {
   loading: boolean = true;
-  boards: BoardItem[] = [
-    {
-      id: '1',
-      title: 'Board 1',
-      description: 'temp',
-    },
-    {
-      id: '2',
-      title: 'Board 2',
-      description: 'temp',
-    },
-    {
-      id: '3',
-      title: 'Board 3',
-      description: 'temp',
-    },
-    {
-      id: '4',
-      title: 'Board 4',
-      description: 'temp',
-    },
-  ];
+
+  boards = new BehaviorSubject<BoardItem[]>([]);
 
   constructor(
     private router: Router,
@@ -47,14 +28,16 @@ export class BoardsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.boardsService.getBoards().subscribe(() => {
+    this.boardsService.getBoards().subscribe((boards) => {
       this.loading = false;
+      this.boards.next(boards);
     });
   }
 
   goToBoard(id: string) {
     this.router.navigate(['/boards/', id]);
   }
+
   deleteBoard(id: string) {
     this.confirmationService.confirm({
       message: 'Do you want to delete this board?',
