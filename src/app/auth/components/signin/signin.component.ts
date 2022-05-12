@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { take } from 'rxjs';
 import { AuthService } from '../../../core/services/auth.service';
 
@@ -13,13 +14,18 @@ import { AuthService } from '../../../core/services/auth.service';
   selector: 'app-signin',
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.scss'],
+  providers: [MessageService],
 })
 export class SigninComponent {
   public userSignin = new FormGroup({
     login: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
   });
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private messageService: MessageService
+  ) {}
   public get loginSignin(): AbstractControl {
     return this.userSignin.get('login') as AbstractControl;
   }
@@ -30,9 +36,19 @@ export class SigninComponent {
     this.authService
       .signin(this.userSignin.value)
       .pipe(take(1))
-      .subscribe((token: string) => {
-        this.authService.saveToken(token);
-        this.router.navigate(['/boards']);
+      .subscribe({
+        next: (token: string) => {
+          this.authService.saveToken(token);
+          this.router.navigate(['/boards']);
+        },
+        error: (e) => {
+          console.log(e);
+          this.messageService.add({
+            severity: 'error',
+            summary: `${e.error.statusCode} ${e.statusText}`,
+            detail: `${e.error.message}`,
+          });
+        },
       });
   }
 }

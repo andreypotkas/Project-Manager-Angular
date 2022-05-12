@@ -14,11 +14,11 @@ export class AuthGuard implements CanActivate, CanLoad {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    return this.authService.isLoggedIn;
+    return this.authService.isLogged.value;
   }
   public canLoad(
     route: Route
   ): boolean | Observable<boolean> | Promise<boolean> {
-    return this.authService.isLoggedIn;
+    return this.authService.isLogged.value;
   }
 }

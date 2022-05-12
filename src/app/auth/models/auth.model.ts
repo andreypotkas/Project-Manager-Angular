@@ -7,3 +7,9 @@ export interface IUser {
 export interface IToken {
   token: string;
 }
+
+export interface ISignup {
+  id: string;
+  login: string;
+  name: string;
+}
