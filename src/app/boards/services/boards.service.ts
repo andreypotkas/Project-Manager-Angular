@@ -1,7 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { BoardItem } from '../models/boardItem.model';
+import {
+  BoardItem,
+  BoardItemResponse,
+  CreateBoardItem,
+} from '../models/boardItem.model';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +16,23 @@ export class BoardsService {
   getBoards(): Observable<BoardItem[]> {
     return this.http.get<BoardItem[]>('boards');
   }
-  deleteBoard(id: string): Observable<BoardItem> {
-    return this.http.delete<BoardItem>('boards/' + id);
+
+  getBoardById(boardId: string): Observable<BoardItemResponse> {
+    return this.http.get<BoardItemResponse>('boards/' + boardId);
+  }
+
+  addBoard(newBoard: CreateBoardItem): Observable<BoardItem> {
+    return this.http.post<BoardItem>('boards', newBoard);
+  }
+
+  updateBoard(
+    boardId: string,
+    changedBoard: CreateBoardItem
+  ): Observable<BoardItem> {
+    return this.http.post<BoardItem>('boards/' + boardId, changedBoard);
+  }
+
+  deleteBoard(id: string) {
+    return this.http.delete('boards/' + id);
   }
 }
