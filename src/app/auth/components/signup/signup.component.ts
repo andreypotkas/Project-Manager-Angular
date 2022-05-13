@@ -48,12 +48,26 @@ export class SignupComponent {
           this.router.navigate(['/boards']);
         },
         error: (e) => {
-          console.log(e);
-          this.messageService.add({
-            severity: 'error',
-            summary: `${e.error.statusCode} ${e.error.error}`,
-            detail: `${e.error.message}`,
-          });
+          if (e.status === 409) {
+            this.messageService.add({
+              severity: 'error',
+              summary: `User login already exists!`,
+              detail: `Please, choose another login.`,
+            });
+          } else if (e.status === 400) {
+            console.log(e);
+            this.messageService.add({
+              severity: 'error',
+              summary: `${e.error.message[0]}!`,
+              detail: `Please, fill in all the fields.`,
+            });
+          } else {
+            this.messageService.add({
+              severity: 'error',
+              summary: `${e.error.statusCode} ${e.error.error}`,
+              detail: `${e.error.message}`,
+            });
+          }
         },
       });
   }

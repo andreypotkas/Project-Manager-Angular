@@ -42,12 +42,26 @@ export class SigninComponent {
           this.router.navigate(['/boards']);
         },
         error: (e) => {
-          console.log(e);
-          this.messageService.add({
-            severity: 'error',
-            summary: `${e.error.statusCode} ${e.statusText}`,
-            detail: `${e.error.message}`,
-          });
+          if (e.status === 403) {
+            this.messageService.add({
+              severity: 'error',
+              summary: `User not found!`,
+              detail: `Please, please check the entered data.`,
+            });
+          } else if (e.status === 400) {
+            console.log(e);
+            this.messageService.add({
+              severity: 'error',
+              summary: `Password should not be empty!`,
+              detail: `Please, fill in all the fields.`,
+            });
+          } else {
+            this.messageService.add({
+              severity: 'error',
+              summary: `${e.error.statusCode} ${e.statusText}`,
+              detail: `${e.error.message}, `,
+            });
+          }
         },
       });
   }
