@@ -1,7 +1,16 @@
 <div class="columns-item">
-  <div>{{column.title}}</div>
-  <div>{{column.order}}</div>
-  <div class="task-list" *ngFor="let task of column.tasks ">
+  <div>{{ column.title }}</div>
+  <div>{{ column.order }}</div>
+  <div class="task-list" *ngFor="let task of column.tasks">
     <app-task [task]="task"></app-task>
   </div>
+  <button
+    type="submit"
+    pButton
+    pRipple
+    label="create task"
+    icon="pi pi-user"
+    class="w-full"
+    (click)="createTask()"
+  ></button>
 </div>

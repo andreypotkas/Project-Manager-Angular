@@ -7,3 +7,9 @@ export interface IUser {
 export interface IToken {
   token: string;
 }
+
+export interface IUserResponse {
+  id: string;
+  name: string;
+  login: string;
+}
