@@ -1,7 +1,23 @@
-<div class="columns-item">
-  <div>{{column.title}}</div>
-  <div>{{column.order}}</div>
-  <div class="task-list" *ngFor="let task of column.tasks ">
-    <app-task [task]="task"></app-task>
+<div class="column">
+  <div class="column-header">
+    <div *ngIf="!editMode" class="column-title-wrapper" (click)="onTitlePress()">
+      <h2 class="column-title">{{column.title}}</h2>
+      <p-button icon="pi pi-times" styleClass="p-button-danger" (click)="deleteColumn(column)"></p-button>
+    </div>
+    <div *ngIf="editMode" class="column-title-wrapper">
+      <button pButton pRipple type="button" label="Submit" class="p-button-raised"
+        (click)="changeColumnTitle()"></button>
+      <button pButton pRipple type="button" label="Cancel" class="p-button-raised p-button-danger"
+        (click)="closeEditMode()"></button>
+      <input id="title" [formControl]="title" type="text" pInputText />
+    </div>
   </div>
+  <p-orderList [value]="column.tasks" [listStyle]="{'max-height':'30rem'}" filterBy="title"
+    filterPlaceholder="Filter by name" [dragdrop]="true">
+    <ng-template let-task pTemplate="item">
+      <app-task [task]="task"></app-task>
+    </ng-template>
+  </p-orderList>
 </div>
+<p-progressSpinner class="progress-spinner" *ngIf="loading"></p-progressSpinner>
+<div class="overlay" *ngIf="loading"></div>
