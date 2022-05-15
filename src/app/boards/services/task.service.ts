@@ -46,7 +46,7 @@ export class TasksService {
     taskId: string,
     changedTask: UpdateTaskItem
   ): Observable<TaskItem> {
-    return this.http.post<TaskItem>(
+    return this.http.put<TaskItem>(
       'boards/' + boardId + '/columns' + columnId + '/tasks/' + taskId,
       changedTask
     );

@@ -29,7 +29,7 @@ export class BoardsService {
     boardId: string,
     changedBoard: CreateBoardItem
   ): Observable<BoardItem> {
-    return this.http.post<BoardItem>('boards/' + boardId, changedBoard);
+    return this.http.put<BoardItem>('boards/' + boardId, changedBoard);
   }
 
   deleteBoard(id: string) {
