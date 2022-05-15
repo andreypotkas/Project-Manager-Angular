@@ -1,0 +1,43 @@
+<form [formGroup]="modalForm" (ngSubmit)="onSubmit()">
+  <div class="formgrid grid">
+    <div class="field col-6">
+      <label for="title">Title</label>
+      <input
+        id="title"
+        type="text"
+        formControlName="title"
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+      />
+    </div>
+    <div class="field col-6">
+      <label for="description">Description</label>
+      <input
+        id="description"
+        type="text"
+        formControlName="description"
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+      />
+    </div>
+    <div class="field col-6">
+      <label for="order">order</label>
+      <input
+        id="order"
+        type="number"
+        formControlName="order"
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+        aria-describedby="username-help"
+      />
+    </div>
+    <div class="field-checkbox col-6">
+      <input type="checkbox" id="done" formControlName="done" />
+      <label for="done">Done</label>
+    </div>
+  </div>
+  <button
+    pButton
+    type="submit"
+    label="Submit"
+    class="p-button-raised p-button-rounded"
+  ></button>
+</form>
+<p-toast></p-toast>

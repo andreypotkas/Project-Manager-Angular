@@ -1,6 +1,15 @@
 <div class="task-list">
-  <div>{{task.title}}</div>
-  <div>{{task.done}}</div>
-  <div>{{task.order}}</div>
-  <div>{{task.description}}</div>
+  <div>{{ task.title }}</div>
+  <div>{{ task.done }}</div>
+  <div>{{ task.order }}</div>
+  <div>{{ task.description }}</div>
+  <button
+    type="submit"
+    pButton
+    pRipple
+    label="showModal"
+    icon="pi pi-user"
+    class="w-full"
+    (click)="showModal()"
+  ></button>
 </div>

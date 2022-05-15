@@ -2,8 +2,9 @@
   <div>{{ column.title }}</div>
   <div>{{ column.order }}</div>
   <div class="task-list" *ngFor="let task of column.tasks">
-    <app-task [task]="task"></app-task>
+    <app-task [task]="task" [column]="column" [boardId]="boardId"></app-task>
   </div>
+
   <button
     type="submit"
     pButton

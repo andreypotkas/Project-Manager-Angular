@@ -13,7 +13,7 @@ import { PrimengModule } from '../primeng/primeng.module';
 
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
-
+import { DialogModule } from '../dialog/dialog.module';
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -29,6 +29,7 @@ import { MessageModule } from 'primeng/message';
     BoardsModule,
     MessagesModule,
     MessageModule,
+    DialogModule,
   ],
   exports: [
     HeaderComponent,
@@ -36,6 +37,7 @@ import { MessageModule } from 'primeng/message';
     PrimengModule,
     MessagesModule,
     MessageModule,
+    DialogModule,
     // StyleClassModule,
     // BrowserAnimationsModule,
   ],

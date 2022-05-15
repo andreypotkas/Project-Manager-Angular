@@ -11,7 +11,7 @@ import { DataViewModule } from 'primeng/dataview';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
 import { PanelModule } from 'primeng/panel';
-
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
 @NgModule({
   declarations: [],
   imports: [
@@ -27,6 +27,7 @@ import { PanelModule } from 'primeng/panel';
     ConfirmDialogModule,
     ToastModule,
     PanelModule,
+    DynamicDialogModule,
   ],
   exports: [
     CommonModule,
