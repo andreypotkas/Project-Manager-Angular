@@ -5,9 +5,10 @@ import {
   ConfirmEventType,
   MessageService,
 } from 'primeng/api';
-import { BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { BoardItem } from '../../models/boardItem.model';
 import { BoardsService } from '../../services/boards.service';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-boards',
@@ -18,10 +19,9 @@ import { BoardsService } from '../../services/boards.service';
 export class BoardsComponent implements OnInit {
   loading: boolean = true;
 
-  boards = new BehaviorSubject<BoardItem[]>([]);
-
   constructor(
     private router: Router,
+    private dataService: DataService,
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
     private boardsService: BoardsService
@@ -30,8 +30,12 @@ export class BoardsComponent implements OnInit {
   ngOnInit(): void {
     this.boardsService.getBoards().subscribe((boards) => {
       this.loading = false;
-      this.boards.next(boards);
+      this.dataService.boards$.next(boards);
     });
+  }
+
+  get boards$(): Observable<BoardItem[]> {
+    return this.dataService.boards$;
   }
 
   goToBoard(id: string) {
