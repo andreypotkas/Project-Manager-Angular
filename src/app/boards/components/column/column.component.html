@@ -12,12 +12,9 @@
       <input id="title" [formControl]="title" type="text" pInputText />
     </div>
   </div>
-  <p-orderList [value]="column.tasks" [listStyle]="{'max-height':'30rem'}" filterBy="title"
-    filterPlaceholder="Filter by name" [dragdrop]="true">
-    <ng-template let-task pTemplate="item">
-      <app-task [task]="task"></app-task>
-    </ng-template>
-  </p-orderList>
+  <div class="task-list" *ngFor="let task of column.tasks">
+    <app-task [task]="task"></app-task>
+  </div>
 </div>
 <p-progressSpinner class="progress-spinner" *ngIf="loading"></p-progressSpinner>
 <div class="overlay" *ngIf="loading"></div>
