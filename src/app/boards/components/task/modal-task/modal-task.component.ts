@@ -8,6 +8,8 @@ import {
 } from 'src/app/boards/models/taskItem.model';
 import { TasksService } from 'src/app/boards/services/task.service';
 
+type ModalType = 'edit' | 'create';
+
 @Component({
   selector: 'app-modal-task',
   templateUrl: './modal-task.component.html',
@@ -16,6 +18,8 @@ import { TasksService } from 'src/app/boards/services/task.service';
 })
 export class ModalTaskComponent implements OnInit {
   public modalForm: FormGroup;
+  mode: ModalType = 'edit';
+
   constructor(
     private ref: DynamicDialogRef,
     private config: DynamicDialogConfig,
@@ -29,30 +33,65 @@ export class ModalTaskComponent implements OnInit {
     });
   }
 
+  get isEditable(): boolean {
+    return this.mode === 'edit';
+  }
+
+  get isCreatable(): boolean {
+    return this.mode === 'create';
+  }
+
+  createTask(): void {
+    const taskData = {
+      boardId: this.config.data.boardId,
+      columnId: this.config.data.columnId,
+      userId: this.config.data.userId,
+    };
+    this.taskService
+      .addTask(taskData.boardId, taskData.columnId, {
+        ...this.modalForm.value,
+        userId: taskData.userId,
+      })
+      .subscribe((task: TaskItemResponse) => {
+        this.ref.close(task);
+      });
+  }
+
+  editTask(): void {
+    const taskId = this.config.data.task.id;
+    const taskData: UpdateTaskItem = {
+      userId: this.config.data.userId,
+      boardId: this.config.data.boardId,
+      columnId: this.config.data.columnId,
+      ...this.modalForm.value,
+    };
+    this.taskService
+      .updateTask(taskData.boardId, taskData.columnId, taskId, taskData)
+      .subscribe((task: TaskItemResponse) => {
+        this.ref.close(task);
+      });
+  }
+
   onSubmit(): void {
     if (this.modalForm.valid) {
-      const taskId = this.config.data.task.id;
-      const taskData: UpdateTaskItem = {
-        userId: this.config.data.task.userId,
-        boardId: this.config.data.task.boardId,
-        columnId: this.config.data.task.columnId,
-        ...this.modalForm.value,
-      };
-      this.taskService
-        .updateTask(taskData.boardId, taskData.columnId, taskId, taskData)
-        .subscribe((task: TaskItemResponse) => {
-          this.ref.close(task);
-        });
+      if (this.isEditable) {
+        this.editTask();
+        return;
+      }
+      this.createTask();
     }
   }
 
   ngOnInit(): void {
-    const { task } = this.config.data;
-    this.modalForm.setValue({
-      title: task.title,
-      description: task.description,
-      order: task.order,
-      done: task.done,
-    });
+    const task = this.config.data?.task;
+    this.mode = this.config.data.mode;
+    if (task) {
+      this.modalForm.setValue({
+        title: task.title,
+        description: task.description,
+        order: task.order,
+        done: task.done,
+      });
+    }
   }
 }

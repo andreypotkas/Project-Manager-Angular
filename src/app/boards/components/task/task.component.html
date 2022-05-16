@@ -7,10 +7,34 @@
     type="submit"
     pButton
     pRipple
+    label="add task"
+    icon="pi pi-user"
+    class="p-button-success"
+    (click)="createTask()"
+  ></button>
+  <button
+    type="submit"
+    pButton
+    pRipple
     label="showModal"
     icon="pi pi-user"
-    class="w-full"
     (click)="showModal()"
   ></button>
+  <button
+    class="p-button-danger"
+    type="submit"
+    pButton
+    pRipple
+    label="delete task"
+    icon="pi pi-user"
+    (click)="deleteModal(task.id)"
+  ></button>
 </div>
-<p-toast></p-toast>
+<p-toast key="edit"></p-toast>
+<p-toast key="create"></p-toast>
+<p-confirmDialog
+  [style]="{ width: '50vw' }"
+  [baseZIndex]="10000"
+  defaultFocus="reject"
+  rejectButtonStyleClass="p-button-text"
+></p-confirmDialog>
