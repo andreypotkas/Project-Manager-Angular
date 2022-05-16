@@ -1,7 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { forkJoin } from 'rxjs';
+import {
+  MessageService,
+  ConfirmationService,
+  ConfirmEventType,
+} from 'primeng/api';
 import { ColumnItemResponse } from '../../models/columnItem.model';
 import { ColumnsService } from '../../services/columns.service';
 import { DataService } from '../../services/data.service';
@@ -25,32 +29,44 @@ export class ColumnComponent {
   constructor(
     private columnService: ColumnsService,
     private route: ActivatedRoute,
-    private dataService: DataService
+    private dataService: DataService,
+    private confirmationService: ConfirmationService,
+    private messageService: MessageService
   ) {}
 
-  deleteColumn(column: ColumnItemResponse) {
-    this.loading = true;
-    // this.columnService.deleteColumn(this.boardId, id).subscribe(() => {
-    //   const columnsCount = this.dataService.board.columns.length;
-    //   if (this.column.order < columnsCount) {
-    //     const changeBoardsOrderRequests = this.dataService.board.columns
-    //       .filter((item) => item.order > this.column.order)
-    //       .map((item) => {
-    //         return this.columnService.updateColumn(this.boardId, item.id, {
-    //           title: item.title,
-    //           order: item.order - 1,
-    //         });
-    //       });
-
-    //     forkJoin(changeBoardsOrderRequests).subscribe(() => {
-    //       this.getBoard();
-    //     });
-    //   } else {
-    //     this.getBoard();
-    //   }
-    // });
-    this.dataService.deleteColumn(column).subscribe(() => {
-      this.getBoard();
+  onPressDeleteColumn(column: ColumnItemResponse) {
+    this.confirmationService.confirm({
+      message: 'Do you want to delete this column?',
+      header: 'Delete Confirmation',
+      icon: 'pi pi-info-circle',
+      accept: () => {
+        this.dataService.deleteColumn(column).subscribe(() => {
+          this.getBoard();
+          this.messageService.add({
+            severity: 'info',
+            summary: 'Confirmed',
+            detail: 'Column deleted',
+          });
+        });
+      },
+      reject: (type: ConfirmEventType) => {
+        switch (type) {
+          case ConfirmEventType.REJECT:
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Rejected',
+              detail: 'You have rejected',
+            });
+            break;
+          case ConfirmEventType.CANCEL:
+            this.messageService.add({
+              severity: 'warn',
+              summary: 'Cancelled',
+              detail: 'You have cancelled',
+            });
+            break;
+        }
+      },
     });
   }
 

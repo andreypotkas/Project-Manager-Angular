@@ -1,8 +1,8 @@
 <div class="column">
   <div class="column-header">
-    <div *ngIf="!editMode" class="column-title-wrapper" (click)="onTitlePress()">
-      <h2 class="column-title">{{column.title}}</h2>
-      <p-button icon="pi pi-times" styleClass="p-button-danger" (click)="deleteColumn(column)"></p-button>
+    <div *ngIf="!editMode" class="column-title-wrapper">
+      <h2 class="column-title" (click)="onTitlePress()">{{column.title}}</h2>
+      <p-button icon="pi pi-times" styleClass="p-button-danger" (click)="onPressDeleteColumn(column)"></p-button>
     </div>
     <div *ngIf="editMode" class="column-title-wrapper">
       <button pButton pRipple type="button" label="Submit" class="p-button-raised"
