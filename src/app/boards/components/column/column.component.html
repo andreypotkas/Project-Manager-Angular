@@ -12,8 +12,8 @@
       <input id="title" [formControl]="title" type="text" pInputText />
     </div>
   </div>
-  <div class="task-list" *ngFor="let task of column.tasks">
-    <app-task [task]="task"></app-task>
+  <div class="task-list">
+    <app-task [task]="task" *ngFor="let task of column.tasks"></app-task>
   </div>
 </div>
 <p-progressSpinner class="progress-spinner" *ngIf="loading"></p-progressSpinner>
