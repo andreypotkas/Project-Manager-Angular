@@ -47,6 +47,11 @@ export class BoardComponent implements OnInit {
         this.getBoard();
         this.displayModal = false;
         this.title.reset();
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Confirmed',
+          detail: 'Column Created',
+        });
       });
   }
 
@@ -59,6 +64,11 @@ export class BoardComponent implements OnInit {
   }
 
   getNewColumnOrder() {
-    return this.dataService.board.columns.length + 1;
+    return (
+      this.dataService.board.columns.reduce(
+        (acc, column) => (acc > column.order ? acc : column.order),
+        0
+      ) + 1
+    );
   }
 }
