@@ -8,6 +8,8 @@ import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { ColumnComponent } from './components/column/column.component';
 import { TaskComponent } from './components/task/task.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     BoardsComponent,
@@ -21,6 +23,7 @@ import { TaskComponent } from './components/task/task.component';
     PrimengModule,
     MessageModule,
     MessagesModule,
+    ReactiveFormsModule,
   ],
 })
 export class BoardsModule {}

@@ -41,7 +41,7 @@ export class ColumnsService {
     columnId: string,
     changedColumn: CreateColumnItem
   ): Observable<ColumnItem> {
-    return this.http.post<ColumnItem>(
+    return this.http.put<ColumnItem>(
       'boards/' + boardId + '/columns/' + columnId,
       changedColumn
     );

@@ -1,9 +1,26 @@
-<div *ngIf="board | async as board" class="board">
+<div *ngIf="board$ | async as board" class="board">
   <h1>{{board.title}}</h1>
   <div>{{board.description}}</div>
+  <p-button icon="pi pi-link" label="Add column" (click)="displayModal=true"></p-button>
   <div class="columns-list">
     <div class="columns-item" *ngFor="let column of board.columns">
-      <app-column [column]="column"></app-column>
+      <app-column [column]="column" [boardId]="board.id"></app-column>
     </div>
   </div>
 </div>
+<p-progressSpinner class="progress-spinner" *ngIf="loading"></p-progressSpinner>
+<p-dialog header="Add column" [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}" [draggable]="false"
+  [resizable]="false">
+  <div class="field">
+    <label for="title" class="block">Title of column</label>
+    <input id="title" [formControl]="title" type="title" aria-describedby="title-help" pInputText />
+    <small *ngIf="title.hasError('required') && !title.untouched" id="title-help" class="p-error block">Title is
+      required.</small>
+  </div>
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check" (click)="addColumn()" label="Ok" styleClass="p-button-text"></p-button>
+  </ng-template>
+</p-dialog>
+<p-toast></p-toast>
+<p-confirmDialog [style]="{ width: '50vw' }" [baseZIndex]="10000" defaultFocus="reject"
+  rejectButtonStyleClass="p-button-text"></p-confirmDialog>

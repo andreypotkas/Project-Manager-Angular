@@ -4,15 +4,15 @@
   }
 
   .board-name {
-    font-size: 1.5rem;
     font-weight: 700;
+    font-size: 1.5rem;
   }
 
   .board-list-item {
     display: flex;
     align-items: center;
-    padding: 1rem;
     width: 100%;
+    padding: 1rem;
 
     .board-list-detail {
       flex: 1 1 0;
@@ -31,9 +31,9 @@
 }
 
 .card {
+  margin-bottom: 2rem;
   padding: 2rem;
+  border-radius: 4px;
   box-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%),
     0 1px 3px 0 rgb(0 0 0 / 12%);
-  border-radius: 4px;
-  margin-bottom: 2rem;
 }

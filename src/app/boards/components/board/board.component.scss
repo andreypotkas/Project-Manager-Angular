@@ -1,3 +1,29 @@
 :host ::ng-deep {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  .board {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .columns-list {
+    display: flex;
+    flex-grow: 2;
+    gap: 10px;
+  }
+
+  .columns-item {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .progress-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%);
+  }
 }

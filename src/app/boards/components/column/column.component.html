@@ -1,7 +1,20 @@
-<div class="columns-item">
-  <div>{{column.title}}</div>
-  <div>{{column.order}}</div>
-  <div class="task-list" *ngFor="let task of column.tasks ">
-    <app-task [task]="task"></app-task>
+<div class="column">
+  <div class="column-header">
+    <div *ngIf="!editMode" class="column-title-wrapper">
+      <h2 class="column-title" (click)="onTitlePress()">{{column.title}}</h2>
+      <p-button icon="pi pi-times" styleClass="p-button-danger" (click)="onPressDeleteColumn(column)"></p-button>
+    </div>
+    <div *ngIf="editMode" class="column-title-wrapper">
+      <button pButton pRipple type="button" label="Submit" class="p-button-raised"
+        (click)="changeColumnTitle()"></button>
+      <button pButton pRipple type="button" label="Cancel" class="p-button-raised p-button-danger"
+        (click)="closeEditMode()"></button>
+      <input id="title" [formControl]="title" type="text" pInputText />
+    </div>
+  </div>
+  <div class="task-list">
+    <app-task [task]="task" *ngFor="let task of column.tasks"></app-task>
   </div>
 </div>
+<p-progressSpinner class="progress-spinner" *ngIf="loading"></p-progressSpinner>
+<div class="overlay" *ngIf="loading"></div>
