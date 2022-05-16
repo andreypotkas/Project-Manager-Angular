@@ -10,6 +10,8 @@ import { MessageModule } from 'primeng/message';
 import { ColumnComponent } from './components/column/column.component';
 import { TaskComponent } from './components/task/task.component';
 import { ModalTaskComponent } from './components/task/modal-task/modal-task.component';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 @NgModule({
   declarations: [
     BoardsComponent,
@@ -26,6 +28,8 @@ import { ModalTaskComponent } from './components/task/modal-task/modal-task.comp
     MessagesModule,
     FormsModule,
     ReactiveFormsModule,
+    ToastModule,
   ],
+  providers: [MessageService],
 })
 export class BoardsModule {}

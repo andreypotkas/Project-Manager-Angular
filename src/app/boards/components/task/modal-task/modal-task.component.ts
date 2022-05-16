@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { UpdateTaskItem } from 'src/app/boards/models/taskItem.model';
+import {
+  TaskItemResponse,
+  UpdateTaskItem,
+} from 'src/app/boards/models/taskItem.model';
 import { TasksService } from 'src/app/boards/services/task.service';
 
 @Component({
@@ -16,8 +19,7 @@ export class ModalTaskComponent implements OnInit {
   constructor(
     private ref: DynamicDialogRef,
     private config: DynamicDialogConfig,
-    private taskService: TasksService,
-    private messageService: MessageService
+    private taskService: TasksService
   ) {
     this.modalForm = new FormGroup({
       title: new FormControl('', [Validators.required]),
@@ -38,13 +40,8 @@ export class ModalTaskComponent implements OnInit {
       };
       this.taskService
         .updateTask(taskData.boardId, taskData.columnId, taskId, taskData)
-        .subscribe((task) => {
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Success',
-            detail: 'Message Content',
-          });
-          this.ref.close();
+        .subscribe((task: TaskItemResponse) => {
+          this.ref.close(task);
         });
     }
   }
