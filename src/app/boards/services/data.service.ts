@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import {
   BehaviorSubject,
+  concat,
+  concatMap,
   defaultIfEmpty,
   forkJoin,
+  last,
   map,
   mergeMap,
   Subject,
@@ -41,7 +44,6 @@ export class DataService {
       tap((board) => {
         board.columns = board.columns.sort((a, b) => a.order - b.order);
         this.board = board;
-        console.log('bb', board);
         this.board$.next(board);
       })
     );
@@ -58,11 +60,75 @@ export class DataService {
               order: item.order - 1,
             });
           });
-
-        return changeBoardsOrderRequests;
+        return concat(...changeBoardsOrderRequests);
       }),
-      mergeMap((requests) => forkJoin(requests)),
-      defaultIfEmpty(null)
+      last()
     );
+  }
+
+  replaceColumn(previousOrder: number, newOrder: number) {
+    const column = this.board.columns[previousOrder - 1];
+    if (newOrder < previousOrder) {
+      return this.columnService
+        .updateColumn(this.board.id, column.id, {
+          title: column.title,
+          order: -1,
+        })
+        .pipe(
+          mergeMap(() => {
+            const changeBoardsOrderRequests = this.board.columns
+              .filter(
+                (item) => item.order >= newOrder && item.order < previousOrder
+              )
+              .reverse()
+              .map((item) => {
+                return this.columnService.updateColumn(this.board.id, item.id, {
+                  title: item.title,
+                  order: item.order + 1,
+                });
+              });
+
+            changeBoardsOrderRequests.push(
+              this.columnService.updateColumn(this.board.id, column.id, {
+                title: column.title,
+                order: newOrder,
+              })
+            );
+
+            return concat(...changeBoardsOrderRequests);
+          }),
+          last()
+        );
+    } else {
+      return this.columnService
+        .updateColumn(this.board.id, column.id, {
+          title: column.title,
+          order: -1,
+        })
+        .pipe(
+          mergeMap(() => {
+            const changeBoardsOrderRequests = this.board.columns
+              .filter(
+                (item) => item.order <= newOrder && item.order > previousOrder
+              )
+              .map((item) => {
+                return this.columnService.updateColumn(this.board.id, item.id, {
+                  title: item.title,
+                  order: item.order - 1,
+                });
+              });
+
+            changeBoardsOrderRequests.push(
+              this.columnService.updateColumn(this.board.id, column.id, {
+                title: column.title,
+                order: newOrder,
+              })
+            );
+
+            return concat(...changeBoardsOrderRequests);
+          }),
+          last()
+        );
+    }
   }
 }

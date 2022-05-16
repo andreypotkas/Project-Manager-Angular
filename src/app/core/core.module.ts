@@ -14,6 +14,8 @@ import { PrimengModule } from '../primeng/primeng.module';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 
+import { DragDropModule } from '@angular/cdk/drag-drop';
+
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -29,6 +31,7 @@ import { MessageModule } from 'primeng/message';
     BoardsModule,
     MessagesModule,
     MessageModule,
+    DragDropModule,
   ],
   exports: [
     HeaderComponent,
@@ -36,6 +39,7 @@ import { MessageModule } from 'primeng/message';
     PrimengModule,
     MessagesModule,
     MessageModule,
+    DragDropModule,
     // StyleClassModule,
     // BrowserAnimationsModule,
   ],

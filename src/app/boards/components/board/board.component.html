@@ -1,9 +1,13 @@
 <div *ngIf="board$ | async as board" class="board">
   <h1>{{board.title}}</h1>
   <div>{{board.description}}</div>
-  <p-button icon="pi pi-link" label="Add column" (click)="displayModal=true"></p-button>
-  <div class="columns-list">
-    <div class="columns-item" *ngFor="let column of board.columns">
+  <div class="button-container">
+    <button pButton icon="pi pi-link" label="Add column" (click)="displayModal=true" class="add-button"></button>
+  </div>
+  <div class="columns-list" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="dropColumn($event)"
+    [cdkDropListData]="columns">
+    <div class="columns-item" *ngFor="let column of columns" cdkDrag>
+      <div cdkDragHandle>move</div>
       <app-column [column]="column" [boardId]="board.id"></app-column>
     </div>
   </div>

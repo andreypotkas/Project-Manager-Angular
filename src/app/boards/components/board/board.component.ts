@@ -1,9 +1,11 @@
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService, ConfirmationService } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { BoardItemResponse } from '../../models/boardItem.model';
+import { ColumnItemResponse } from '../../models/columnItem.model';
 import { ColumnsService } from '../../services/columns.service';
 import { DataService } from '../../services/data.service';
 
@@ -20,6 +22,8 @@ export class BoardComponent implements OnInit {
 
   title = new FormControl('', [Validators.required]);
 
+  columns!: ColumnItemResponse[];
+
   constructor(
     private route: ActivatedRoute,
     private columnService: ColumnsService,
@@ -29,6 +33,10 @@ export class BoardComponent implements OnInit {
 
   ngOnInit() {
     this.getBoard();
+
+    this.dataService.board$.subscribe(
+      (board) => (this.columns = board.columns)
+    );
   }
 
   get board$(): Observable<BoardItemResponse> {
@@ -69,6 +77,25 @@ export class BoardComponent implements OnInit {
         (acc, column) => (acc > column.order ? acc : column.order),
         0
       ) + 1
+    );
+  }
+
+  dropColumn(event: CdkDragDrop<ColumnItemResponse[]>) {
+    this.dataService
+      .replaceColumn(event.previousIndex + 1, event.currentIndex + 1)
+      .subscribe(() => {
+        this.getBoard();
+        this.messageService.add({
+          severity: 'info',
+          summary: 'Confirmed',
+          detail: 'Column replaced',
+        });
+      });
+
+    moveItemInArray(
+      event.container.data,
+      event.previousIndex,
+      event.currentIndex
     );
   }
 }
