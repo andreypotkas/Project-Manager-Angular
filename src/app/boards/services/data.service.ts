@@ -1,6 +1,13 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { BehaviorSubject, forkJoin, map, mergeMap, Subject, tap } from 'rxjs';
+import {
+  BehaviorSubject,
+  defaultIfEmpty,
+  forkJoin,
+  map,
+  mergeMap,
+  Subject,
+  tap,
+} from 'rxjs';
 import { BoardItem, BoardItemResponse } from '../models/boardItem.model';
 import { ColumnItemResponse } from '../models/columnItem.model';
 import { BoardsService } from './boards.service';
@@ -18,8 +25,7 @@ export class DataService {
 
   constructor(
     private boardsService: BoardsService,
-    private columnService: ColumnsService,
-    private route: ActivatedRoute
+    private columnService: ColumnsService
   ) {}
 
   getBoards() {
@@ -35,6 +41,7 @@ export class DataService {
       tap((board) => {
         board.columns = board.columns.sort((a, b) => a.order - b.order);
         this.board = board;
+        console.log('bb', board);
         this.board$.next(board);
       })
     );
@@ -42,7 +49,7 @@ export class DataService {
 
   deleteColumn(column: ColumnItemResponse) {
     return this.columnService.deleteColumn(this.board.id, column.id).pipe(
-      mergeMap(() => {
+      map(() => {
         const changeBoardsOrderRequests = this.board.columns
           .filter((item) => item.order > column.order)
           .map((item) => {
@@ -52,8 +59,10 @@ export class DataService {
             });
           });
 
-        return forkJoin(changeBoardsOrderRequests);
-      })
+        return changeBoardsOrderRequests;
+      }),
+      mergeMap((requests) => forkJoin(requests)),
+      defaultIfEmpty(null)
     );
   }
 }
