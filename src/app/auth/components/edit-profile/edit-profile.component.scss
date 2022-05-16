@@ -1,11 +1,11 @@
 :host {
   display: flex;
   flex-direction: column;
-  row-gap: 50px;
+  align-items: center;
   max-width: 600px;
   margin: 0 auto;
   margin-top: 100px;
-  align-items: center;
+  row-gap: 50px;
 
   .ng-valid,
   .ng-valid.required {
