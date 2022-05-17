@@ -1,9 +1,10 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService, ConfirmationService } from 'primeng/api';
-import { Observable } from 'rxjs';
+import { catchError, Observable, of, throwError } from 'rxjs';
 import { BoardItemResponse } from '../../models/boardItem.model';
 import { ColumnItemResponse } from '../../models/columnItem.model';
 import { ColumnsService } from '../../services/columns.service';
@@ -51,6 +52,17 @@ export class BoardComponent implements OnInit {
         title: newColumnTitle,
         order: newColumnOrder,
       })
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          this.displayModal = false;
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: `Column not added. Error: ${error.message}`,
+          });
+          return throwError(() => new Error(error.message));
+        })
+      )
       .subscribe(() => {
         this.getBoard();
         this.displayModal = false;
@@ -85,6 +97,16 @@ export class BoardComponent implements OnInit {
 
     this.dataService
       .replaceColumn(event.previousIndex + 1, event.currentIndex + 1)
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: `Column not replaced. Error: ${error.message}`,
+          });
+          return throwError(() => new Error(error.message));
+        })
+      )
       .subscribe(() => {
         this.getBoard();
         this.messageService.add({
