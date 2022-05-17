@@ -2,21 +2,28 @@
 @import 'primeflex/primeflex.css';
 
 body {
-  font-family: Roboto, 'Helvetica Neue Light', 'Helvetica Neue', Helvetica,
-    Arial, 'Lucida Grande', sans-serif;
   width: 100%;
   height: 100%;
   margin: 0;
-  padding: 15px;
+  padding: 0 15px;
+  font-family: Roboto, 'Helvetica Neue Light', 'Helvetica Neue', Helvetica,
+    Arial, 'Lucida Grande', sans-serif;
 }
 
 html {
+  box-sizing: border-box;
   width: 100%;
   height: 100%;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
 }
 
 app-root {
   display: flex;
   flex-direction: column;
-  min-height: 100%;
+  padding-bottom: 54px;
 }

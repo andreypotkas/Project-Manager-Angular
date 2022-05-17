@@ -12,6 +12,10 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
 import { PanelModule } from 'primeng/panel';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { DialogModule } from 'primeng/dialog';
+import { ToolbarModule } from 'primeng/toolbar';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+
 @NgModule({
   declarations: [],
   imports: [
@@ -28,6 +32,9 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
     ToastModule,
     PanelModule,
     DynamicDialogModule,
+    DialogModule,
+    ToolbarModule,
+    ProgressSpinnerModule,
   ],
   exports: [
     CommonModule,
@@ -42,6 +49,9 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
     ConfirmDialogModule,
     ToastModule,
     PanelModule,
+    DialogModule,
+    ToolbarModule,
+    ProgressSpinnerModule,
   ],
 })
 export class PrimengModule {}

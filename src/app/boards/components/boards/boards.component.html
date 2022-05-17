@@ -1,7 +1,7 @@
 <div class="card">
   <p-dataView
     #dv
-    [value]="(boards | async)!"
+    [value]="(boards$ | async)!"
     [rows]="9"
     filterBy="title"
     layout="list"

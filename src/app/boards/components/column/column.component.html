@@ -1,17 +1,39 @@
-<div class="columns-item">
-  <div>{{ column.title }}</div>
-  <div>{{ column.order }}</div>
-  <div class="task-list" *ngFor="let task of column.tasks">
-    <app-task [task]="task" [column]="column" [boardId]="boardId"></app-task>
+<div class="column">
+  <div class="column-header">
+    <div *ngIf="!editMode" class="column-title-wrapper">
+      <p class="column-title" (click)="onTitlePress()">{{ column.title }}</p>
+      <p-button
+        icon="pi pi-times"
+        styleClass="p-button-danger p-button-sm"
+        (click)="onPressDeleteColumn(column)"
+      >
+      </p-button>
+    </div>
+    <div *ngIf="editMode" class="column-edit-wrapper">
+      <div class="edit-button-container">
+        <p-button
+          label="Submit"
+          styleClass="p-button-sm"
+          (click)="changeColumnTitle()"
+        ></p-button>
+        <p-button
+          label="Cancel"
+          styleClass="p-button-sm p-button-danger"
+          (click)="closeEditMode()"
+        ></p-button>
+      </div>
+      <input
+        class="input-title"
+        id="title"
+        [formControl]="title"
+        type="text"
+        pInputText
+      />
+    </div>
   </div>
-
-  <button
-    type="submit"
-    pButton
-    pRipple
-    label="create task"
-    icon="pi pi-user"
-    class="w-full"
-    (click)="createTask()"
-  ></button>
+  <div class="task-list" #taskList appMaxHeight>
+    <app-task [task]="task" *ngFor="let task of column.tasks"></app-task>
+  </div>
 </div>
+<p-progressSpinner class="progress-spinner" *ngIf="loading"></p-progressSpinner>
+<div class="overlay" *ngIf="loading"></div>

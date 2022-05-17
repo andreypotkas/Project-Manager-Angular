@@ -8,8 +8,8 @@ export interface IToken {
   token: string;
 }
 
-export interface IUserResponse {
+export interface ISignup {
   id: string;
-  name: string;
   login: string;
+  name: string;
 }

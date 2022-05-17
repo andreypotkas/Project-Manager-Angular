@@ -1,3 +1,77 @@
 :host ::ng-deep {
-  display: block;
+  display: flex;
+  flex-direction: column;
+
+  .board {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .board-title {
+    color: rgb(0 0 0 / 60%);
+    text-align: center;
+  }
+
+  .board-desc {
+    max-width: 400px;
+    margin: 0 auto 20px;
+    font-weight: 600;
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .button-container {
+    margin: 0 auto 20px;
+  }
+
+  .add-button.p-element {
+    display: block;
+  }
+
+  .columns-list {
+    display: flex;
+    gap: 15px;
+    overflow-y: auto;
+  }
+
+  .columns-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .progress-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%);
+  }
+
+  .move-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+  }
+
+  .cdk-drag-preview {
+    box-sizing: border-box;
+    border-radius: 4px;
+    box-shadow: 0 5px 5px -3px rgb(0 0 0 / 20%), 0 8px 10px 1px rgb(0 0 0 / 14%),
+      0 3px 14px 2px rgb(0 0 0 / 12%);
+  }
+
+  .cdk-drag-placeholder {
+    opacity: 0;
+  }
+
+  .cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }
+
+  .columns-list.cdk-drop-list-dragging
+    .columns-item:not(.cdk-drag-placeholder) {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }
 }

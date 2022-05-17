@@ -6,9 +6,10 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PrimengModule } from '../primeng/primeng.module';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 
 @NgModule({
-  declarations: [SigninComponent, SignupComponent],
+  declarations: [SigninComponent, SignupComponent, EditProfileComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,

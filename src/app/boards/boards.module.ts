@@ -12,6 +12,8 @@ import { TaskComponent } from './components/task/task.component';
 import { ModalTaskComponent } from './components/task/modal-task/modal-task.component';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { MaxHeightDirective } from './directives/max-height.directive';
+
 @NgModule({
   declarations: [
     BoardsComponent,
@@ -19,6 +21,7 @@ import { MessageService } from 'primeng/api';
     ColumnComponent,
     TaskComponent,
     ModalTaskComponent,
+    MaxHeightDirective,
   ],
   imports: [
     CommonModule,
@@ -29,6 +32,7 @@ import { MessageService } from 'primeng/api';
     FormsModule,
     ReactiveFormsModule,
     ToastModule,
+    ReactiveFormsModule,
   ],
   providers: [MessageService],
 })
