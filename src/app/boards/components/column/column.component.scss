@@ -2,6 +2,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  background-color: #fff;
 
   .column {
     display: grid;
@@ -13,6 +14,7 @@
   }
 
   .column-header {
+    position: relative;
     display: flex;
     gap: 10px;
     align-items: center;
@@ -21,9 +23,40 @@
     border-bottom: 1px solid #e0e0e0;
   }
 
+  .column-title-wrapper {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .column-edit-wrapper {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   .column-title {
+    max-width: 230px;
     margin: 0;
+    overflow: hidden;
+    font-weight: 500;
+    font-size: 16px;
+    text-overflow: ellipsis;
     cursor: pointer;
+  }
+
+  .input-title {
+    width: 200px;
+    height: 20px;
+  }
+
+  .edit-button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
   }
 
   .task-list {

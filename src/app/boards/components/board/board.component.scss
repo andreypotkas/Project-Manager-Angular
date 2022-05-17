@@ -7,19 +7,35 @@
     flex-direction: column;
   }
 
+  .board-title {
+    color: rgb(0 0 0 / 60%);
+    text-align: center;
+  }
+
+  .board-desc {
+    max-width: 400px;
+    margin: 0 auto 20px;
+    font-weight: 600;
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .button-container {
+    margin: 0 auto 20px;
+  }
+
   .add-button.p-element {
     display: block;
   }
 
   .columns-list {
-    display: grid;
-    grid-auto-columns: min-content;
-    grid-auto-flow: column;
+    display: flex;
     gap: 15px;
     overflow-y: auto;
   }
 
   .columns-item {
+    position: relative;
     display: flex;
     flex-direction: column;
   }
@@ -29,6 +45,14 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%);
+  }
+
+  .move-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
   }
 
   .cdk-drag-preview {

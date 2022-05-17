@@ -20,7 +20,7 @@ export class BoardComponent implements OnInit {
 
   displayModal = false;
 
-  title = new FormControl('', [Validators.required]);
+  title = new FormControl('', [Validators.required, Validators.minLength(6)]);
 
   columns!: ColumnItemResponse[];
 
