@@ -2,12 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, map, mergeMap, Observable, tap } from 'rxjs';
-import {
-  ISignup,
-  IToken,
-  IUser,
-  IUserResponse,
-} from '../../auth/models/auth.model';
+import { ISignup, IToken, IUser } from '../../auth/models/auth.model';
 
 @Injectable({
   providedIn: 'root',
@@ -42,8 +37,8 @@ export class AuthService {
     );
   }
   public signup(data: IUser): Observable<any> {
-    return this.http.post<IUserResponse>('signup', data).pipe(
-      tap((data: IUserResponse) => {
+    return this.http.post<ISignup>('signup', data).pipe(
+      tap((data: ISignup) => {
         this.saveUserId(data.id);
       }),
       mergeMap(() =>
