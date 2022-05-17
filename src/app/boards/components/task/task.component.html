@@ -16,9 +16,9 @@
     type="submit"
     pButton
     pRipple
-    label="showModal"
+    label="Edit Task"
     icon="pi pi-user"
-    (click)="showModal()"
+    (click)="editTask()"
   ></button>
   <button
     class="p-button-danger"
@@ -27,7 +27,7 @@
     pRipple
     label="delete task"
     icon="pi pi-user"
-    (click)="deleteModal(task.id)"
+    (click)="deleteTask(task.id)"
   ></button>
 </div>
 <p-toast key="edit"></p-toast>

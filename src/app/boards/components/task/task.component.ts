@@ -67,7 +67,7 @@ export class TaskComponent {
     });
   }
 
-  deleteModal(taskId: string): void {
+  deleteTask(taskId: string): void {
     this.confirmationService.confirm({
       message: 'Do you want to delete this board?',
       header: 'Delete Confirmation',
@@ -108,7 +108,7 @@ export class TaskComponent {
       },
     });
   }
-  showModal(): void {
+  editTask(): void {
     this.dialogRef = this.dialogService.open(ModalTaskComponent, {
       data: {
         task: { ...this.task },
@@ -136,8 +136,6 @@ export class TaskComponent {
         .subscribe((board) => {
           this.dataService.board$.next(board);
           //TODO
-          // this.board.next(board);
-          // this.columns.next(board.columns);
           // this.loading = false;
         });
     });
