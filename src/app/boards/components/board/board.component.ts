@@ -17,7 +17,7 @@ import { DataService } from '../../services/data.service';
   providers: [MessageService],
 })
 export class BoardComponent implements OnInit {
-  loading: boolean = true;
+  loading = true;
 
   displayModal = false;
 
@@ -45,6 +45,7 @@ export class BoardComponent implements OnInit {
   }
 
   addColumn() {
+    this.loading = true;
     const newColumnTitle = this.title.value;
     const newColumnOrder = this.getNewColumnOrder();
     this.columnService
@@ -55,6 +56,7 @@ export class BoardComponent implements OnInit {
       .pipe(
         catchError((error: HttpErrorResponse) => {
           this.displayModal = false;
+          this.loading = false;
           this.messageService.add({
             severity: 'error',
             summary: 'Error',
@@ -66,6 +68,7 @@ export class BoardComponent implements OnInit {
       .subscribe(() => {
         this.getBoard();
         this.displayModal = false;
+        this.loading = false;
         this.title.reset();
         this.messageService.add({
           severity: 'success',

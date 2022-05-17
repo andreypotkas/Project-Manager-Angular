@@ -36,7 +36,7 @@
   </div>
   <ng-template pTemplate="footer">
     <button pButton pRipple type="button" icon="pi pi-check" label="Add" (click)="addColumn()" class="p-button-raised"
-      [disabled]="!title.valid"></button>t: add error message to addColumn and replaceColumn)
+      [disabled]="!title.valid || loading"></button>
   </ng-template>
 </p-dialog>
 <p-toast></p-toast>
