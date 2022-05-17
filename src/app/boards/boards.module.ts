@@ -9,6 +9,7 @@ import { MessageModule } from 'primeng/message';
 import { ColumnComponent } from './components/column/column.component';
 import { TaskComponent } from './components/task/task.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MaxHeightDirective } from './directives/max-height.directive';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     BoardComponent,
     ColumnComponent,
     TaskComponent,
+    MaxHeightDirective,
   ],
   imports: [
     CommonModule,

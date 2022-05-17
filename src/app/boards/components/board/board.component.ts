@@ -81,6 +81,8 @@ export class BoardComponent implements OnInit {
   }
 
   dropColumn(event: CdkDragDrop<ColumnItemResponse[]>) {
+    if (event.previousIndex === event.currentIndex) return;
+
     this.dataService
       .replaceColumn(event.previousIndex + 1, event.currentIndex + 1)
       .subscribe(() => {

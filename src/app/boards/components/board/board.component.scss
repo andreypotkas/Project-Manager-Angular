@@ -1,12 +1,10 @@
 :host ::ng-deep {
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
 
   .board {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
   }
 
   .add-button.p-element {
@@ -14,9 +12,11 @@
   }
 
   .columns-list {
-    display: flex;
-    flex-grow: 2;
-    gap: 10px;
+    display: grid;
+    grid-auto-columns: min-content;
+    grid-auto-flow: column;
+    gap: 15px;
+    overflow-y: auto;
   }
 
   .columns-item {
