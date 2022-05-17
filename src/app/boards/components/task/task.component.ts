@@ -5,12 +5,13 @@ import {
   ConfirmEventType,
   MessageService,
 } from 'primeng/api';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DialogService } from 'primeng/dynamicdialog';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { ColumnItemResponse } from '../../models/columnItem.model';
 import { TaskItemResponse } from '../../models/taskItem.model';
 import { BoardsService } from '../../services/boards.service';
+import { DataService } from '../../services/data.service';
 import { TasksService } from '../../services/task.service';
 import { ModalTaskComponent } from './modal-task/modal-task.component';
 
@@ -32,7 +33,8 @@ export class TaskComponent {
     private taskService: TasksService,
     private boardsService: BoardsService,
     private route: ActivatedRoute,
-    private authService: AuthService
+    private authService: AuthService,
+    private dataService: DataService
   ) {}
 
   createTask(): void {
@@ -48,19 +50,19 @@ export class TaskComponent {
     });
 
     this.dialogRef.onClose.subscribe((task: TaskItemResponse) => {
-      this.messageService.add({
-        severity: 'success',
-        summary: 'Success',
-        key: 'create',
-        detail: `Task created`,
-      });
+      if (task) {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          key: 'create',
+          detail: `Task created`,
+        });
+      }
+
       this.boardsService
         .getBoardById(this.route.snapshot.params['id'])
         .subscribe((board) => {
-          //TODO
-          // this.board.next(board);
-          // this.columns.next(board.columns);
-          // this.loading = false;
+          this.dataService.board$.next(board);
         });
     });
   }
@@ -82,10 +84,7 @@ export class TaskComponent {
             this.boardsService
               .getBoardById(this.route.snapshot.params['id'])
               .subscribe((board) => {
-                //TODO
-                // this.board.next(board);
-                // this.columns.next(board.columns);
-                // this.loading = false;
+                this.dataService.board$.next(board);
               });
           });
       },
@@ -123,15 +122,19 @@ export class TaskComponent {
     });
 
     this.dialogRef.onClose.subscribe((task: TaskItemResponse) => {
-      this.messageService.add({
-        severity: 'success',
-        summary: 'Success',
-        key: 'edit',
-        detail: `Task id: ${task.id} edited`,
-      });
+      if (task) {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          key: 'edit',
+          detail: `Task id: ${task.id} edited`,
+        });
+      }
+
       this.boardsService
         .getBoardById(this.route.snapshot.params['id'])
         .subscribe((board) => {
+          this.dataService.board$.next(board);
           //TODO
           // this.board.next(board);
           // this.columns.next(board.columns);

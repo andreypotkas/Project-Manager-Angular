@@ -65,6 +65,7 @@ export class ModalTaskComponent implements OnInit {
       columnId: this.config.data.columnId,
       ...this.modalForm.value,
     };
+
     this.taskService
       .updateTask(taskData.boardId, taskData.columnId, taskId, taskData)
       .subscribe((task: TaskItemResponse) => {

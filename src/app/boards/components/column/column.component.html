@@ -32,7 +32,12 @@
     </div>
   </div>
   <div class="task-list" #taskList appMaxHeight>
-    <app-task [task]="task" *ngFor="let task of column.tasks"></app-task>
+    <app-task
+      [task]="task"
+      *ngFor="let task of column.tasks"
+      [column]="column"
+      [boardId]="boardId"
+    ></app-task>
   </div>
 </div>
 <p-progressSpinner class="progress-spinner" *ngIf="loading"></p-progressSpinner>
