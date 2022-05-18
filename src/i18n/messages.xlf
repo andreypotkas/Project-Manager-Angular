@@ -219,6 +219,28 @@
           <context context-type="linenumber">35,36</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="srcfooter" datatype="html">
+        <source>../../../../en-us/assets/images/rs.png</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/footer/footer.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="srcfooter-x" datatype="html">
+        <source>../../../../en-us/assets/images/git.png</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/footer/footer.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/footer/footer.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/footer/footer.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="registration" datatype="html">
         <source> Sign Up </source>
         <context-group purpose="location">
@@ -269,32 +291,58 @@
         </context-group>
       </trans-unit>
       <trans-unit id="welcome-start" datatype="html">
-        <source> Start with boards, columns and cards and then move on to more complex ones. functions. Manage projects, organize tasks and maintain team spirit is all in Project Manager. <x id="START_TAG_DIV" ctype="x-div" equiv-text="&lt;div class=&quot;preview-img&quot;&gt;"/><x id="TAG_IMG" ctype="image" equiv-text="&lt;img src=&quot;../../../../assets/images/board.png&quot; alt=&quot;board&quot; /&gt;"/><x id="CLOSE_TAG_DIV" ctype="x-div" equiv-text="&lt;/div&gt;"/></source>
+        <source> Start with boards, columns and cards and then move on to more complex ones functions. Manage projects, organize tasks and maintain team spirit is all in Project Manager. <x id="START_TAG_DIV" ctype="x-div" equiv-text="&lt;div class=&quot;preview-img&quot;&gt;"/><x id="TAG_IMG" ctype="image" equiv-text="&lt;img
+        i18n-src=&quot;@@srcboard&quot;
+        src=&quot;../../../../en-us/assets/images/board.png&quot;
+        alt=&quot;board&quot;
+      /&gt;"/><x id="CLOSE_TAG_DIV" ctype="x-div" equiv-text="&lt;/div&gt;"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/core/components/welcome/welcome.component.html</context>
-          <context context-type="linenumber">22,28</context>
+          <context context-type="linenumber">22,32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="srcboard" datatype="html">
+        <source>../../../../en-us/assets/images/board.png</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/welcome/welcome.component.html</context>
+          <context context-type="linenumber">29</context>
         </context-group>
       </trans-unit>
       <trans-unit id="team" datatype="html">
         <source>Our team</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/core/components/welcome/welcome.component.html</context>
-          <context context-type="linenumber">32</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="srcavatar" datatype="html">
+        <source>../../../../en-us/assets/images/avatar.png</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/welcome/welcome.component.html</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/welcome/welcome.component.html</context>
+          <context context-type="linenumber">67</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/welcome/welcome.component.html</context>
+          <context context-type="linenumber">84</context>
         </context-group>
       </trans-unit>
       <trans-unit id="Description" datatype="html">
         <source>Description</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/core/components/welcome/welcome.component.html</context>
-          <context context-type="linenumber">48</context>
+          <context context-type="linenumber">53</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/core/components/welcome/welcome.component.html</context>
-          <context context-type="linenumber">64</context>
+          <context context-type="linenumber">70</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/core/components/welcome/welcome.component.html</context>
-          <context context-type="linenumber">80</context>
+          <context context-type="linenumber">87</context>
         </context-group>
       </trans-unit>
     </body>
