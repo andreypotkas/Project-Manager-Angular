@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="editprofile" datatype="html">
+        <source> Edit profile </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/edit-profile/edit-profile.component.html</context>
+          <context context-type="linenumber">7,9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/header/header.component.html</context>
+          <context context-type="linenumber">28,30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="name" datatype="html">
+        <source>Name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/edit-profile/edit-profile.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/signup/signup.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="plsentername" datatype="html">
+        <source> Please enter a name </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/edit-profile/edit-profile.component.html</context>
+          <context context-type="linenumber">29,31</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/signup/signup.component.html</context>
+          <context context-type="linenumber">36,38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="log-in" datatype="html">
+        <source>Login</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/edit-profile/edit-profile.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/signin/signin.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/signup/signup.component.html</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="plsenterlogin" datatype="html">
+        <source> Please enter a login </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/edit-profile/edit-profile.component.html</context>
+          <context context-type="linenumber">52,54</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/signin/signin.component.html</context>
+          <context context-type="linenumber">40,42</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/signup/signup.component.html</context>
+          <context context-type="linenumber">59,61</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="pass" datatype="html">
+        <source>Password</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/edit-profile/edit-profile.component.html</context>
+          <context context-type="linenumber">58</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/signin/signin.component.html</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/signup/signup.component.html</context>
+          <context context-type="linenumber">65</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="plsenterpass" datatype="html">
+        <source> Please enter a password </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/edit-profile/edit-profile.component.html</context>
+          <context context-type="linenumber">75,77</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/signin/signin.component.html</context>
+          <context context-type="linenumber">64,66</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/signup/signup.component.html</context>
+          <context context-type="linenumber">82,84</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="update" datatype="html">
+        <source>Update</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/edit-profile/edit-profile.component.html</context>
+          <context context-type="linenumber">85</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="del" datatype="html">
+        <source>Delete user</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/edit-profile/edit-profile.component.html</context>
+          <context context-type="linenumber">104</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="welcomeback" datatype="html">
+        <source> Welcome Back </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/signin/signin.component.html</context>
+          <context context-type="linenumber">7,9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="donthaveacc" datatype="html">
+        <source>Don&apos;t have an account?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/signin/signin.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="create" datatype="html">
+        <source>Create today!</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/signin/signin.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="forgotpass" datatype="html">
+        <source>Forgot password?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/signin/signin.component.html</context>
+          <context context-type="linenumber">73</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="login" datatype="html">
+        <source>Sign In</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/signin/signin.component.html</context>
+          <context context-type="linenumber">81</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/signup/signup.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/header/header.component.html</context>
+          <context context-type="linenumber">12,14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="welc" datatype="html">
+        <source>Welcome</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/signup/signup.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="alreadhaveacc" datatype="html">
+        <source>Already have an account?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/signup/signup.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="registr" datatype="html">
+        <source>Sign Up</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/signup/signup.component.html</context>
+          <context context-type="linenumber">95</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Descrip" datatype="html">
+        <source>Description:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boards/components/board/board.component.html</context>
+          <context context-type="linenumber">4,5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="addcolumn" datatype="html">
+        <source>Add column</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boards/components/board/board.component.html</context>
+          <context context-type="linenumber">12,13</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boards/components/board/board.component.html</context>
+          <context context-type="linenumber">44,45</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="titleofcolumn" datatype="html">
+        <source>Title of column</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boards/components/board/board.component.html</context>
+          <context context-type="linenumber">54,57</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="add" datatype="html">
+        <source>Add</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boards/components/board/board.component.html</context>
+          <context context-type="linenumber">85</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="searchby" datatype="html">
+        <source>Search by title</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boards/components/boards/boards.component.html</context>
+          <context context-type="linenumber">19,20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="gotoboard" datatype="html">
+        <source>Go to board</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boards/components/boards/boards.component.html</context>
+          <context context-type="linenumber">35,36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="registration" datatype="html">
+        <source> Sign Up </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/header/header.component.html</context>
+          <context context-type="linenumber">20,22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="home" datatype="html">
+        <source> Home </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/header/header.component.html</context>
+          <context context-type="linenumber">31,33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="logout" datatype="html">
+        <source>Logout</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/header/header.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="welcome-page-welcome-title" datatype="html">
+        <source> Welcome to Project Manager </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/welcome/welcome.component.html</context>
+          <context context-type="linenumber">2,4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="welcome-page-p-one" datatype="html">
+        <source> Project Manager helps teams get things done efficiently. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/welcome/welcome.component.html</context>
+          <context context-type="linenumber">5,7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="welcome-page-p-two" datatype="html">
+        <source> Work as a team, manage projects and take productivity to the next level level in your own unique way with Project Manager. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/welcome/welcome.component.html</context>
+          <context context-type="linenumber">8,11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="btn" datatype="html">
+        <source>create an account to get started</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/welcome/welcome.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="welcome-start" datatype="html">
+        <source> Start with boards, columns and cards and then move on to more complex ones. functions. Manage projects, organize tasks and maintain team spirit is all in Project Manager. <x id="START_TAG_DIV" ctype="x-div" equiv-text="&lt;div class=&quot;preview-img&quot;&gt;"/><x id="TAG_IMG" ctype="image" equiv-text="&lt;img src=&quot;../../../../assets/images/board.png&quot; alt=&quot;board&quot; /&gt;"/><x id="CLOSE_TAG_DIV" ctype="x-div" equiv-text="&lt;/div&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/welcome/welcome.component.html</context>
+          <context context-type="linenumber">22,28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="team" datatype="html">
+        <source>Our team</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/welcome/welcome.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Description" datatype="html">
+        <source>Description</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/welcome/welcome.component.html</context>
+          <context context-type="linenumber">48</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/welcome/welcome.component.html</context>
+          <context context-type="linenumber">64</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/welcome/welcome.component.html</context>
+          <context context-type="linenumber">80</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

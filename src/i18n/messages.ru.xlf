@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" target-language="ru" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="editprofile" datatype="html">
+        <source> Edit profile </source>
+        <target>Редактировать профиль</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/edit-profile/edit-profile.component.html</context>
+          <context context-type="linenumber">7,9</context>
+        </context-group>
+        <context-group purpose="location">
+          <target>Редактировать</target>
+          <context context-type="sourcefile">src/app/core/components/header/header.component.html</context>
+          <context context-type="linenumber">28,30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="name" datatype="html">
+        <source>Name</source>
+        <target>Имя</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/edit-profile/edit-profile.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/signup/signup.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="plsentername" datatype="html">
+        <source> Please enter a name </source>
+        <target>Пожалуйста введите имя</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/edit-profile/edit-profile.component.html</context>
+          <context context-type="linenumber">29,31</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/signup/signup.component.html</context>
+          <context context-type="linenumber">36,38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="log-in" datatype="html">
+        <source>Login</source>
+        <target>Логин</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/edit-profile/edit-profile.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/signin/signin.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/signup/signup.component.html</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="plsenterlogin" datatype="html">
+        <source> Please enter a login </source>
+        <target>Пожалуйста введите логин</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/edit-profile/edit-profile.component.html</context>
+          <context context-type="linenumber">52,54</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/signin/signin.component.html</context>
+          <context context-type="linenumber">40,42</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/signup/signup.component.html</context>
+          <context context-type="linenumber">59,61</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="pass" datatype="html">
+        <source>Password</source>
+        <target>Пороль</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/edit-profile/edit-profile.component.html</context>
+          <context context-type="linenumber">58</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/signin/signin.component.html</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/signup/signup.component.html</context>
+          <context context-type="linenumber">65</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="plsenterpass" datatype="html">
+        <source> Please enter a password </source>
+        <target>Пожалуйста введите пороль</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/edit-profile/edit-profile.component.html</context>
+          <context context-type="linenumber">75,77</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/signin/signin.component.html</context>
+          <context context-type="linenumber">64,66</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/signup/signup.component.html</context>
+          <context context-type="linenumber">82,84</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="welcomeback" datatype="html">
+        <source> Welcome Back </source>
+        <target>Добро пожаловать!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/signin/signin.component.html</context>
+          <context context-type="linenumber">7,9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="donthaveacc" datatype="html">
+        <source>Don&apos;t have an account?</source>
+        <target>Ещё нет аккаунта?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/signin/signin.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="create" datatype="html">
+        <source>Create today!</source>
+        <target>Создайте сейчас!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/signin/signin.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="forgotpass" datatype="html">
+        <source>Forgot password?</source>
+        <target>Забыли пороль?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/signin/signin.component.html</context>
+          <context context-type="linenumber">73</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="welc" datatype="html">
+        <source>Welcome</source>
+        <target>Добро пожаловать!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/signup/signup.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="alreadhaveacc" datatype="html">
+        <source>Already have an account?</source>
+        <target>Уже есть аккаунт?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/signup/signup.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="login" datatype="html">
+        <source>Sign in!</source>
+        <target>Войти</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/signup/signup.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/header/header.component.html</context>
+          <context context-type="linenumber">12,14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="registration" datatype="html">
+        <source> Sign Up </source>
+        <target>Регистрация</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/header/header.component.html</context>
+          <context context-type="linenumber">20,22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="home" datatype="html">
+        <source> Home </source>
+        <target>Домой</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/header/header.component.html</context>
+          <context context-type="linenumber">31,33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="logout" datatype="html">
+        <source>Logout</source>
+        <target>Выйти</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/header/header.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="welcome-page-welcome-title" datatype="html">
+        <source> Welcome to Project Manager </source>
+        <target>Добро пожаловать в Project Manager</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/welcome/welcome.component.html</context>
+          <context context-type="linenumber">2,4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="welcome-page-p-one" datatype="html">
+        <source> Project Manager helps teams get things done efficiently. </source>
+        <target>Менеджер проектов помогает командам эффективно выполнять задачи.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/welcome/welcome.component.html</context>
+          <context context-type="linenumber">5,7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="welcome-page-p-two" datatype="html">
+        <source> Work as a team, manage projects and take productivity to the next level level in your own unique way with Project Manager. </source>
+        <target>Работайте в команде, управляйте проектами и поднимайте производительность на новый уровень уникальным способом с помощью Project Manager.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/welcome/welcome.component.html</context>
+          <context context-type="linenumber">8,11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="team" datatype="html">
+        <source>Our team</source>
+        <target>Наша команда</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/welcome/welcome.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Descrip" datatype="html">
+        <source>Description:</source>
+        <target>Описание:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boards/components/board/board.component.html</context>
+          <context context-type="linenumber">4,5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Description" datatype="html">
+        <source>Description</source>
+        
+        <target>Роль</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/welcome/welcome.component.html</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/welcome/welcome.component.html</context>
+          <context context-type="linenumber">63</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/welcome/welcome.component.html</context>
+          <context context-type="linenumber">79</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="btn" datatype="html">
+        <source>create an account to get started</source>
+        <target>создайте аккаунт что бы начать</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/welcome/welcome.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="update" datatype="html">
+        <source>Update</source>
+        <target>Изменить</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/edit-profile/edit-profile.component.html</context>
+          <context context-type="linenumber">85</context>
+        </context-group>
+      </trans-unit>
+      
+      <trans-unit id="del" datatype="html">
+        <source>Delete user</source>
+        <target>Удалить</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/edit-profile/edit-profile.component.html</context>
+          <context context-type="linenumber">104</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="registr" datatype="html">
+        <source>Sign Up</source>
+        <target>Зарегистрироваться</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/auth/components/signup/signup.component.html</context>
+          <context context-type="linenumber">95</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="gotoboard" datatype="html">
+        <source>Go to board</source>
+        <target>Перейти к доске</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boards/components/boards/boards.component.html</context>
+          <context context-type="linenumber">35,36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="searchby" datatype="html">
+        <source>Search by title</source>
+        <target>Поиск по названию</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boards/components/boards/boards.component.html</context>
+          <context context-type="linenumber">19,20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="welcome-start" datatype="html">
+        <source> Start with boards, columns and cards and then move on to more complex ones. functions. Manage projects, organize tasks and maintain team spirit is all in Project Manager. <x id="START_TAG_DIV" ctype="x-div" equiv-text="&lt;div class=&quot;preview-img&quot;&gt;"/><x id="TAG_IMG" ctype="image" equiv-text="&lt;img src=&quot;../../../../assets/images/board.png&quot; alt=&quot;board&quot; /&gt;"/><x id="CLOSE_TAG_DIV" ctype="x-div" equiv-text="&lt;/div&gt;"/></source>
+        <target> Начните с досок, колонок и карточек, а затем переходите к более сложным функциям. Управляйте проектами, организуйте задачи и поддерживайте командный дух — все это в Менеджере проектов.<x id="START_TAG_DIV" ctype="x-div" equiv-text="&lt;div class=&quot;preview-img&quot;&gt;"/><x id="TAG_IMG" ctype="image" equiv-text="&lt;img src=&quot;../../../../assets/images/board.png&quot; alt=&quot;board&quot; /&gt;"/><x id="CLOSE_TAG_DIV" ctype="x-div" equiv-text="&lt;/div&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/welcome/welcome.component.html</context>
+          <context context-type="linenumber">22,28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="add" datatype="html">
+        <source>Add</source>
+        <target>Добавить</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boards/components/board/board.component.html</context>
+          <context context-type="linenumber">84</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="titleofcolumn" datatype="html">
+        <source>Title of column</source>
+        <target>Название колонки</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boards/components/board/board.component.html</context>
+          <context context-type="linenumber">53,56</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="addcolumn" datatype="html">
+        <source>Add column</source>
+         <target>Добавить колонку</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boards/components/board/board.component.html</context>
+          <context context-type="linenumber">11,12</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boards/components/board/board.component.html</context>
+          <context context-type="linenumber">43,44</context>
+        </context-group>
+      </trans-unit>
+    </body>
+    
+  </file>
+</xliff>

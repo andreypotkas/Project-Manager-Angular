@@ -20,6 +20,12 @@
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
+      "i18n": {
+        "sourceLocale": "en-US",
+        "locales": {
+          "ru": "src/i18n/messages.ru.xlf"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -42,17 +48,20 @@
             "scripts": []
           },
           "configurations": {
+            "ru": {
+              "localize": ["ru"]
+            },
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "2000kb",
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "2000kb",
+                  "maximumError": "4000kb"
                 }
               ],
               "fileReplacements": [
@@ -81,6 +90,9 @@
             "proxyConfig": "./proxy.conf.json"
           },
           "configurations": {
+            "ru": {
+              "browserTarget": "project-management-app:build:ru"
+            },
             "production": {
               "browserTarget": "project-management-app:build:production"
             },

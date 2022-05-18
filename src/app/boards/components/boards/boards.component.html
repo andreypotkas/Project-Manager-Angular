@@ -15,6 +15,7 @@
             #search
             type="search"
             pInputText
+            i18n-placeholder="@@searchby"
             placeholder="Search by title"
             (input)="dv.filter(search.value)"
           />
@@ -30,6 +31,7 @@
           <div class="board-list-action">
             <p-button
               icon="pi pi-link"
+              i18n-label="@@gotoboard"
               label="Go to board"
               (click)="goToBoard(board.id)"
             ></p-button>

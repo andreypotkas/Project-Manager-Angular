@@ -1,19 +1,42 @@
 <h1 routerLink="welcome">Project <span class="title-part">Manager</span></h1>
 <div class="auth-btns">
-  <button *ngIf="!isLogged" pButton routerLink="authorization">Sign In</button>
-  <button *ngIf="!isLogged" pButton routerLink="authorization/signup">
+  <div class="localize">
+    <a href="/{{ stateOptions[0].value }}/">
+      {{ stateOptions[0].label }}
+    </a>
+
+    <a href="/{{ stateOptions[1].value }}/" [ngClass]="'red'">
+      {{ stateOptions[1].label }}
+    </a>
+  </div>
+  <button *ngIf="!isLogged" i18n="@@login" pButton routerLink="authorization">
+    Sign In
+  </button>
+  <button
+    i18n="@@registration"
+    *ngIf="!isLogged"
+    pButton
+    routerLink="authorization/signup"
+  >
     Sign Up
   </button>
-  <button *ngIf="isLogged" pButton routerLink="authorization/edit">
+  <button
+    i18n="@@editprofile"
+    *ngIf="isLogged"
+    pButton
+    routerLink="authorization/edit"
+  >
     edit profile
   </button>
-  <button *ngIf="isLogged" pButton routerLink="boards">Home</button>
+  <button i18n="@@home" *ngIf="isLogged" pButton routerLink="boards">
+    Home
+  </button>
   <button
     (click)="authService.logout()"
     *ngIf="isLogged"
     pButton
     routerLink="authorization/signup"
   >
-    Logout
+    <span i18n="@@logout">Logout</span>
   </button>
 </div>
