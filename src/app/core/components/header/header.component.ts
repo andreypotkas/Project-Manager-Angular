@@ -24,7 +24,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
       { value: 'en-Us', label: 'En' },
       { value: 'ru', label: 'Ru' },
     ];
-    this.authService.checkToken();
     this.subscription = this.authService.isLogged.subscribe(
       (data) => (this.isLogged = data)
     );
