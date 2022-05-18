@@ -49,7 +49,6 @@ export class SigninComponent {
               detail: `Please, please check the entered data.`,
             });
           } else if (e.status === 400) {
-            console.log(e);
             this.messageService.add({
               severity: 'error',
               summary: `Password should not be empty!`,

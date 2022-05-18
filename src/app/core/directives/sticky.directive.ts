@@ -15,7 +15,6 @@ export class StickyDirective implements AfterViewInit, OnDestroy {
 
   constructor(private renderer: Renderer2, private elementRef: ElementRef) {
     this.container = this.elementRef.nativeElement as HTMLElement;
-    console.log('work');
 
     this.scrollSub = fromEvent(window, 'scroll').subscribe(() =>
       this.setSticky()

@@ -57,7 +57,6 @@ export class EditProfileComponent {
           });
         },
         error: (e) => {
-          console.log(e);
           this.messageService.add({
             severity: 'error',
             summary: `${e.error.statusCode} ${e.error.error}`,
@@ -86,7 +85,6 @@ export class EditProfileComponent {
               this.authService.logout();
             },
             error: (e) => {
-              console.log(e);
               this.messageService.add({
                 severity: 'error',
                 summary: `${e.error.statusCode} ${e.error.error}`,

@@ -14,10 +14,7 @@ export class WelcomeGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    console.log('ffff', this.authService.isLoggedIn);
-
     if (this.authService.isLoggedIn) {
-      console.log('jjjj', this.authService.isLoggedIn);
       return this.router.createUrlTree(['/boards']);
     }
     return true;
