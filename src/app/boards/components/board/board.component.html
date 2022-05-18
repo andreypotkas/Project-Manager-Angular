@@ -11,10 +11,10 @@
       class="add-button"></button>
   </div>
   <div class="columns-list" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="dropColumn($event)"
-    [cdkDropListData]="columns">
+    [cdkDropListData]="columns" cdkDropListGroup>
     <div class="columns-item" *ngFor="let column of columns" cdkDrag>
-      <div>
-        <div cdkDragHandle>
+      <div class="column-wrapper">
+        <div class="drag-handle" cdkDragHandle>
           <div class="move-button">
             <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
               <path
@@ -24,7 +24,19 @@
             </svg>
           </div>
         </div>
-        <app-column [column]="column" [boardId]="board.id"></app-column>
+        <div class="column">
+          <app-column-header [column]="column"
+            (loadingColumnEvent)="loadingColumn = $event.loading;loadingColumnId = $event.columnId">
+          </app-column-header>
+          <div class="task-list" id="{{column.id}}" appMaxHeight cdkDropList [cdkDropListData]="column.tasks"
+            (cdkDropListDropped)="dropTask($event, column)">
+            <app-task [task]="task" *ngFor="let task of column.tasks" [column]="column" [boardId]="boardId" cdkDrag>
+            </app-task>
+          </div>
+        </div>
+        <p-progressSpinner class="progress-spinner" *ngIf="loadingColumn && loadingColumnId === column.id">
+        </p-progressSpinner>
+        <div class="overlay" *ngIf="loadingColumn && loadingColumnId === column.id"></div>
       </div>
     </div>
   </div>

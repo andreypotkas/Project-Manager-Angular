@@ -1,19 +1,23 @@
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Injectable } from '@angular/core';
 import {
   BehaviorSubject,
   concat,
   concatMap,
   defaultIfEmpty,
+  empty,
   forkJoin,
   last,
   map,
   mergeMap,
+  of,
   Subject,
   tap,
 } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { BoardItem, BoardItemResponse } from '../models/boardItem.model';
 import { ColumnItemResponse } from '../models/columnItem.model';
+import { TaskItemResponse } from '../models/taskItem.model';
 import { BoardsService } from './boards.service';
 import { ColumnsService } from './columns.service';
 import { TasksService } from './task.service';
@@ -248,5 +252,80 @@ export class DataService {
           last()
         );
     }
+  }
+
+  replaceTaskBetweenColumns(
+    event: CdkDragDrop<TaskItemResponse[]>,
+    column: ColumnItemResponse
+  ) {
+    const previousOrder = event.previousIndex + 1;
+    const currentOrder = event.currentIndex + 1;
+    const currentColumn = this.board.columns.find(
+      (column) => column.id === event.container.id
+    );
+    const previousColumn = this.board.columns.find(
+      (column) => column.id === event.previousContainer.id
+    );
+    const task = previousColumn!.tasks[previousOrder - 1];
+
+    return this.taskService
+      .updateTask(this.board.id, event.previousContainer.id, task.id, {
+        title: task.title,
+        done: task.done,
+        order: currentOrder,
+        description: task.description,
+        userId: this.authService.getUserId() || '',
+        boardId: this.board.id,
+        columnId: currentColumn!.id,
+      })
+      .pipe(
+        mergeMap((resp) => {
+          const orderRequestsPrev = previousColumn!.tasks
+            .filter((item) => item.order > previousOrder)
+            .map((item) => {
+              return this.taskService.updateTask(
+                this.board.id,
+                previousColumn!.id,
+                item.id,
+                {
+                  title: item.title,
+                  done: item.done,
+                  order: item.order - 1,
+                  description: item.description,
+                  userId: this.authService.getUserId() || '',
+                  boardId: this.board.id,
+                  columnId: previousColumn!.id,
+                }
+              );
+            });
+
+          const orderRequestsCurr = currentColumn!.tasks
+            .filter((item) => item.order >= currentOrder && item != task)
+            .map((item) => {
+              return this.taskService.updateTask(
+                this.board.id,
+                currentColumn!.id,
+                item.id,
+                {
+                  title: item.title,
+                  done: item.done,
+                  order: item.order + 1,
+                  description: item.description,
+                  userId: this.authService.getUserId() || '',
+                  boardId: this.board.id,
+                  columnId: currentColumn!.id,
+                }
+              );
+            });
+
+          const changeTasksOrderRequests = [
+            ...orderRequestsPrev,
+            ...orderRequestsCurr,
+            of(resp),
+          ];
+
+          return forkJoin(changeTasksOrderRequests);
+        })
+      );
   }
 }

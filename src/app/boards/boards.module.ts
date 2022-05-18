@@ -14,6 +14,7 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { MaxHeightDirective } from './directives/max-height.directive';
 import { BoardsModalComponent } from './components/boards/boards-modal/boards-modal.component';
+import { ColumnHeaderComponent } from './components/column-header/column-header.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { BoardsModalComponent } from './components/boards/boards-modal/boards-mo
     ModalTaskComponent,
     MaxHeightDirective,
     BoardsModalComponent,
+    ColumnHeaderComponent,
   ],
   imports: [
     CommonModule,
