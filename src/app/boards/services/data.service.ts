@@ -145,7 +145,6 @@ export class DataService {
     column: ColumnItemResponse
   ) {
     const task = column.tasks[previousOrder - 1];
-    console.log('task', task);
 
     if (newOrder < previousOrder) {
       return this.taskService
@@ -166,7 +165,6 @@ export class DataService {
               )
               .reverse()
               .map((item) => {
-                console.log(item);
                 return this.taskService.updateTask(
                   this.board.id,
                   column.id,
@@ -194,8 +192,6 @@ export class DataService {
                 columnId: column.id,
               })
             );
-
-            console.log();
 
             return concat(...changeTasksOrderRequests);
           }),
