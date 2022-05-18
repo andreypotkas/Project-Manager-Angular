@@ -8,6 +8,11 @@
     font-size: 1.5rem;
   }
 
+  .board-description {
+    font-weight: 400;
+    font-size: 1rem;
+  }
+
   .board-list-item {
     display: flex;
     align-items: center;
@@ -21,7 +26,7 @@
     .board-list-action {
       display: flex;
       justify-content: space-between;
-      width: 200px;
+      width: 250px;
     }
 
     .p-button {

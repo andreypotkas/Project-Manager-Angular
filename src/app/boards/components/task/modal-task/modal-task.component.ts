@@ -8,7 +8,7 @@ import {
 } from 'src/app/boards/models/taskItem.model';
 import { TasksService } from 'src/app/boards/services/task.service';
 
-type ModalType = 'edit' | 'create';
+export type ModalType = 'edit' | 'create';
 
 @Component({
   selector: 'app-modal-task',
