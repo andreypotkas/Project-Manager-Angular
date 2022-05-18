@@ -1,14 +1,17 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService, ConfirmationService } from 'primeng/api';
 import { catchError, Observable, of, throwError } from 'rxjs';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { BoardItemResponse } from '../../models/boardItem.model';
 import { ColumnItemResponse } from '../../models/columnItem.model';
+import { CreateTaskItem } from '../../models/taskItem.model';
 import { ColumnsService } from '../../services/columns.service';
 import { DataService } from '../../services/data.service';
+import { TasksService } from '../../services/task.service';
 
 @Component({
   selector: 'app-board',
@@ -19,9 +22,25 @@ import { DataService } from '../../services/data.service';
 export class BoardComponent implements OnInit {
   loading = true;
 
-  displayModal = false;
+  displayModalNewColumn = false;
+
+  displayModalNewTask = false;
 
   title = new FormControl('', [Validators.required, Validators.minLength(6)]);
+
+  taskTitle = new FormControl('', [
+    Validators.required,
+    Validators.minLength(6),
+  ]);
+
+  taskDescription = new FormControl('', [
+    Validators.required,
+    Validators.minLength(20),
+  ]);
+
+  taskColumnId = new FormControl(null, [Validators.required]);
+
+  taskForm!: FormGroup;
 
   columns!: ColumnItemResponse[];
 
@@ -29,8 +48,16 @@ export class BoardComponent implements OnInit {
     private route: ActivatedRoute,
     private columnService: ColumnsService,
     private dataService: DataService,
-    private messageService: MessageService
-  ) {}
+    private messageService: MessageService,
+    private tasksService: TasksService,
+    private authService: AuthService
+  ) {
+    this.taskForm = new FormGroup({
+      taskTitle: this.taskTitle,
+      taskDescription: this.taskDescription,
+      taskColumnId: this.taskColumnId,
+    });
+  }
 
   ngOnInit() {
     this.getBoard();
@@ -55,7 +82,7 @@ export class BoardComponent implements OnInit {
       })
       .pipe(
         catchError((error: HttpErrorResponse) => {
-          this.displayModal = false;
+          this.displayModalNewColumn = false;
           this.loading = false;
           this.messageService.add({
             severity: 'error',
@@ -67,13 +94,51 @@ export class BoardComponent implements OnInit {
       )
       .subscribe(() => {
         this.getBoard();
-        this.displayModal = false;
+        this.displayModalNewColumn = false;
         this.loading = false;
         this.title.reset();
         this.messageService.add({
           severity: 'success',
           summary: 'Confirmed',
           detail: 'Column Created',
+        });
+      });
+  }
+
+  addTask() {
+    this.loading = true;
+    const taskColumnId = this.taskColumnId.value;
+    const newTaskOrder = this.getNewTaskOrder(taskColumnId);
+    const newTask: CreateTaskItem = {
+      title: this.taskTitle.value,
+      done: false,
+      order: newTaskOrder,
+      description: this.taskDescription.value,
+      userId: this.authService.getUserId() || '',
+    };
+    this.tasksService
+      .addTask(this.dataService.board.id, taskColumnId, newTask)
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          this.displayModalNewTask = false;
+          this.loading = false;
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: `Task not added. Error: ${error.message}`,
+          });
+          return throwError(() => new Error(error.message));
+        })
+      )
+      .subscribe(() => {
+        this.getBoard();
+        this.displayModalNewTask = false;
+        this.loading = false;
+        this.taskForm.reset();
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Confirmed',
+          detail: 'Task Created',
         });
       });
   }
@@ -90,6 +155,19 @@ export class BoardComponent implements OnInit {
     return (
       this.dataService.board.columns.reduce(
         (acc, column) => (acc > column.order ? acc : column.order),
+        0
+      ) + 1
+    );
+  }
+
+  getNewTaskOrder(columnId: string) {
+    const column = this.dataService.board.columns.find(
+      (column) => column.id === columnId
+    );
+    if (column === undefined) return 1;
+    return (
+      column.tasks.reduce(
+        (acc, task) => (acc > task.order ? acc : task.order),
         0
       ) + 1
     );

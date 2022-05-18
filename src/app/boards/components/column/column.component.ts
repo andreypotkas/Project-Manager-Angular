@@ -57,7 +57,9 @@ export class ColumnComponent {
             })
           )
           .subscribe(() => {
-            this.getBoard();
+            setTimeout(() => {
+              this.getBoard();
+            }, 1000);
             this.messageService.add({
               severity: 'success',
               summary: 'Confirmed',
@@ -117,7 +119,9 @@ export class ColumnComponent {
         })
       )
       .subscribe(() => {
-        this.getBoard();
+        setTimeout(() => {
+          this.getBoard();
+        }, 1000);
         this.messageService.add({
           severity: 'success',
           summary: 'Updated',
