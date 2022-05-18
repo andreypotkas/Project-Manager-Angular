@@ -13,8 +13,9 @@
       <input class="input-title" id="title" [formControl]="title" type="text" pInputText />
     </div>
   </div>
-  <div class="task-list" #taskList appMaxHeight>
-    <app-task [task]="task" *ngFor="let task of column.tasks" [column]="column" [boardId]="boardId"></app-task>
+  <div class="task-list" #taskList appMaxHeight cdkDropList [cdkDropListData]="column.tasks"
+    (cdkDropListDropped)="dropTask($event, column)">
+    <app-task [task]="task" *ngFor="let task of column.tasks" [column]="column" [boardId]="boardId" cdkDrag></app-task>
   </div>
 </div>
 <p-progressSpinner class="progress-spinner" *ngIf="loading"></p-progressSpinner>

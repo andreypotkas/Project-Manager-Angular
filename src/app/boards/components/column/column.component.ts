@@ -1,3 +1,4 @@
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
@@ -10,6 +11,7 @@ import {
 import { DialogService } from 'primeng/dynamicdialog';
 import { catchError, throwError } from 'rxjs';
 import { ColumnItemResponse } from '../../models/columnItem.model';
+import { TaskItemResponse } from '../../models/taskItem.model';
 import { ColumnsService } from '../../services/columns.service';
 import { DataService } from '../../services/data.service';
 
@@ -128,5 +130,38 @@ export class ColumnComponent {
           detail: 'Column title updated',
         });
       });
+  }
+
+  dropTask(event: CdkDragDrop<TaskItemResponse[]>, column: ColumnItemResponse) {
+    if (event.previousIndex === event.currentIndex) return;
+
+    this.dataService
+      .replaceTask(event.previousIndex + 1, event.currentIndex + 1, column)
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: `Task not replaced. Error: ${error.message}`,
+          });
+          return throwError(() => new Error(error.message));
+        })
+      )
+      .subscribe(() => {
+        setTimeout(() => {
+          this.getBoard();
+        }, 1000);
+        this.messageService.add({
+          severity: 'info',
+          summary: 'Confirmed',
+          detail: 'Task replaced',
+        });
+      });
+
+    moveItemInArray(
+      event.container.data,
+      event.previousIndex,
+      event.currentIndex
+    );
   }
 }
