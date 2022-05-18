@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, map, mergeMap, Observable } from 'rxjs';
+import { BehaviorSubject, map, mergeMap, Observable, tap } from 'rxjs';
 import { ISignup, IToken, IUser } from '../../auth/models/auth.model';
 
 @Injectable({
@@ -10,6 +10,7 @@ import { ISignup, IToken, IUser } from '../../auth/models/auth.model';
 export class AuthService {
   isLogged: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public token: string | null;
+  public userId: string | null = '';
   constructor(private http: HttpClient, private router: Router) {
     this.token = localStorage.getItem('token')
       ? localStorage.getItem('token')
@@ -36,8 +37,10 @@ export class AuthService {
     );
   }
   public signup(data: IUser): Observable<any> {
-    return this.http.post('signup', data).pipe(
-      map((data: any) => localStorage.setItem('id', data.id)),
+    return this.http.post<ISignup>('signup', data).pipe(
+      tap((data: ISignup) => {
+        this.saveUserId(data.id);
+      }),
       mergeMap(() =>
         this.http.post<IToken>('signin', {
           login: data.login,
@@ -57,6 +60,10 @@ export class AuthService {
     this.token = token;
     localStorage.setItem('token', token);
   }
+  private saveUserId(userId: string) {
+    this.userId = userId;
+    localStorage.setItem('userId', userId);
+  }
   public logout(): void {
     localStorage.removeItem('token');
     this.router.navigate(['/welcome']);
@@ -66,4 +73,24 @@ export class AuthService {
   public getUserToken(): string {
     return String(this.token);
   }
+
+  get isLoggedIn(): boolean {
+    return !!this.token;
+  }
+
+  public getUserId(): string | null {
+    return this.userId ? this.userId : localStorage.getItem('userId');
+  }
+
+  /* getUsers(){
+    return this.http.get('/api/users', {
+      headers: { 'Authorization': `Bearer ${this.token}` }
+    });
+  }
+
+  getUser(id: string){
+    return this.http.get(`/api/users/${id}`, {
+      headers: { 'Authorization': `Bearer ${this.token}` }
+    });
+  } */
 }

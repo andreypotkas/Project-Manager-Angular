@@ -6,6 +6,7 @@ import {
   ConfirmationService,
   ConfirmEventType,
 } from 'primeng/api';
+import { DialogService } from 'primeng/dynamicdialog';
 import { ColumnItemResponse } from '../../models/columnItem.model';
 import { ColumnsService } from '../../services/columns.service';
 import { DataService } from '../../services/data.service';
@@ -14,6 +15,7 @@ import { DataService } from '../../services/data.service';
   selector: 'app-column',
   templateUrl: './column.component.html',
   styleUrls: ['./column.component.scss'],
+  providers: [DialogService, MessageService],
 })
 export class ColumnComponent {
   @Input() column!: ColumnItemResponse;

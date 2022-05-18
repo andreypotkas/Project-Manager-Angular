@@ -13,6 +13,7 @@ import { PrimengModule } from '../primeng/primeng.module';
 
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
+import { DialogModule } from '../dialog/dialog.module';
 
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
@@ -31,6 +32,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     BoardsModule,
     MessagesModule,
     MessageModule,
+    DialogModule,
     DragDropModule,
   ],
   exports: [
@@ -39,6 +41,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     PrimengModule,
     MessagesModule,
     MessageModule,
+    DialogModule,
     DragDropModule,
     // StyleClassModule,
     // BrowserAnimationsModule,
