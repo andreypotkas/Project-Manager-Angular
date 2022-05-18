@@ -33,7 +33,7 @@
 
   .column-edit-wrapper {
     display: flex;
-    gap: 10px;
+    gap: 4px;
     align-items: center;
     justify-content: space-between;
   }
@@ -49,13 +49,12 @@
   }
 
   .input-title {
-    width: 200px;
+    width: 130px;
     height: 20px;
   }
 
   .edit-button-container {
     display: flex;
-    flex-direction: column;
     gap: 4px;
   }
 

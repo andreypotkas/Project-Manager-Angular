@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -7,6 +8,7 @@ import {
   ConfirmEventType,
 } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
+import { catchError, throwError } from 'rxjs';
 import { ColumnItemResponse } from '../../models/columnItem.model';
 import { ColumnsService } from '../../services/columns.service';
 import { DataService } from '../../services/data.service';
@@ -42,27 +44,32 @@ export class ColumnComponent {
       header: 'Delete Confirmation',
       icon: 'pi pi-info-circle',
       accept: () => {
-        this.dataService.deleteColumn(column).subscribe(() => {
-          this.getBoard();
-          this.messageService.add({
-            severity: 'info',
-            summary: 'Confirmed',
-            detail: 'Column deleted',
+        this.dataService
+          .deleteColumn(column)
+          .pipe(
+            catchError((error: HttpErrorResponse) => {
+              this.messageService.add({
+                severity: 'error',
+                summary: 'Error',
+                detail: `Column not deleted. Error: ${error.message}`,
+              });
+              return throwError(() => new Error(error.message));
+            })
+          )
+          .subscribe(() => {
+            this.getBoard();
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Confirmed',
+              detail: 'Column deleted',
+            });
           });
-        });
       },
       reject: (type: ConfirmEventType) => {
         switch (type) {
           case ConfirmEventType.REJECT:
             this.messageService.add({
-              severity: 'error',
-              summary: 'Rejected',
-              detail: 'You have rejected',
-            });
-            break;
-          case ConfirmEventType.CANCEL:
-            this.messageService.add({
-              severity: 'warn',
+              severity: 'info',
               summary: 'Cancelled',
               detail: 'You have cancelled',
             });
@@ -97,8 +104,25 @@ export class ColumnComponent {
         title: this.title.value,
         order: this.column.order,
       })
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          this.editMode = false;
+          this.loading = false;
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: `Column title don\`t updated. Error: ${error.message}`,
+          });
+          return throwError(() => new Error(error.message));
+        })
+      )
       .subscribe(() => {
         this.getBoard();
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Updated',
+          detail: 'Column title updated',
+        });
       });
   }
 }
