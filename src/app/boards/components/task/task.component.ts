@@ -6,7 +6,7 @@ import {
   MessageService,
 } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
-import { Observable } from 'rxjs';
+import { Observable, take } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { ColumnItemResponse } from '../../models/columnItem.model';
 import { TaskItemResponse } from '../../models/taskItem.model';
@@ -61,6 +61,7 @@ export class TaskComponent {
 
       this.boardsService
         .getBoardById(this.route.snapshot.params['id'])
+        .pipe(take(1))
         .subscribe((board) => {
           this.dataService.board$.next(board);
         });
@@ -83,6 +84,7 @@ export class TaskComponent {
             });
             this.boardsService
               .getBoardById(this.route.snapshot.params['id'])
+              .pipe(take(1))
               .subscribe((board) => {
                 this.dataService.board$.next(board);
               });
@@ -133,6 +135,7 @@ export class TaskComponent {
 
       this.boardsService
         .getBoardById(this.route.snapshot.params['id'])
+        .pipe(take(1))
         .subscribe((board) => {
           this.dataService.board$.next(board);
           //TODO

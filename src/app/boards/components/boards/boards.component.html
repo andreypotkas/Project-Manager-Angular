@@ -8,7 +8,9 @@
     [loading]="loading"
   >
     <ng-template pTemplate="header">
-      <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
+      <div
+        class="flex justify-content-between p-flex-column p-flex-md-row p-jc-between"
+      >
         <span class="p-input-icon-left p-mb-2 p-mb-md-0">
           <i class="pi pi-search"></i>
           <input
@@ -19,6 +21,15 @@
             (input)="dv.filter(search.value)"
           />
         </span>
+        <button
+          type="submit"
+          pButton
+          pRipple
+          label="Create board"
+          icon="pi pi-plus"
+          class="ml-auto"
+          (click)="createBoard()"
+        ></button>
       </div>
     </ng-template>
     <ng-template let-board pTemplate="listItem">
@@ -26,8 +37,9 @@
         <div class="board-list-item">
           <div class="board-list-detail">
             <div class="board-name">{{ board.title }}</div>
+            <span class="board-description">{{ board.description }}</span>
           </div>
-          <div class="board-list-action">
+          <div class="board-list-action flex align-items-center">
             <p-button
               icon="pi pi-link"
               label="Go to board"
@@ -40,6 +52,14 @@
               icon="pi pi-trash"
               class="p-button-rounded p-button-danger"
               (click)="deleteBoard(board.id)"
+            ></button>
+            <button
+              pButton
+              pRipple
+              type="button"
+              icon="pi pi-user-edit"
+              class="p-button-rounded p-button-success"
+              (click)="editBoard(board)"
             ></button>
           </div>
         </div>
