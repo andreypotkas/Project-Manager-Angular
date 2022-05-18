@@ -104,8 +104,25 @@ export class ColumnComponent {
         title: this.title.value,
         order: this.column.order,
       })
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          this.editMode = false;
+          this.loading = false;
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: `Column title don\`t updated. Error: ${error.message}`,
+          });
+          return throwError(() => new Error(error.message));
+        })
+      )
       .subscribe(() => {
         this.getBoard();
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Updated',
+          detail: 'Column title updated',
+        });
       });
   }
 }
