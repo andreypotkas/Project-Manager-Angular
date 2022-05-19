@@ -26,6 +26,10 @@ export class TaskComponent {
   @Input() column!: ColumnItemResponse;
   @Input() boardId!: string;
   dialogRef: any;
+  edit: string = $localize`Edit task`;
+  message: string = $localize`Do you want to delete this board?`;
+  delete: string = $localize`Delete Confirmation`;
+  create: string = $localize`Create task`;
   constructor(
     private dialogService: DialogService,
     private messageService: MessageService,
@@ -45,7 +49,7 @@ export class TaskComponent {
         boardId: this.boardId,
         userId: this.authService.getUserId(),
       },
-      header: 'Create task',
+      header: `${this.create}`,
       width: '50%',
     });
 
@@ -73,8 +77,8 @@ export class TaskComponent {
 
   deleteTask(taskId: string): void {
     this.confirmationService.confirm({
-      message: 'Do you want to delete this board?',
-      header: 'Delete Confirmation',
+      message: `${this.message}`,
+      header: `${this.delete}`,
       icon: 'pi pi-info-circle',
       accept: () => {
         this.taskService
@@ -126,7 +130,7 @@ export class TaskComponent {
         userId: this.task.userId,
         mode: 'edit',
       },
-      header: 'Edit task',
+      header: `${this.edit}`,
       width: '50%',
     });
 

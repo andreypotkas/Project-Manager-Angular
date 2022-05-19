@@ -1,7 +1,7 @@
 <form [formGroup]="modalForm" (ngSubmit)="onSubmit()">
   <div class="formgrid grid">
     <div class="field col-6">
-      <label for="title">Title</label>
+      <label for="title" i18n="@@title">Title</label>
       <input
         id="title"
         type="text"
@@ -10,7 +10,7 @@
       />
     </div>
     <div class="field col-6">
-      <label for="description">Description</label>
+      <label for="description" i18n="@@Descrip">Description</label>
       <input
         id="description"
         type="text"
@@ -19,7 +19,7 @@
       />
     </div>
     <div class="field col-6">
-      <label for="order">order</label>
+      <label for="order" i18n="@@order">order</label>
       <input
         id="order"
         type="number"
@@ -30,13 +30,14 @@
     </div>
     <div class="field-checkbox col-6">
       <input type="checkbox" id="done" formControlName="done" />
-      <label for="done">Done</label>
+      <label for="done" i18n="@@done">Done</label>
     </div>
   </div>
   <button
     pButton
     type="submit"
     label="Submit"
+    i18n-label="@@submitbtn"
     class="p-button-raised p-button-rounded"
   ></button>
 </form>
