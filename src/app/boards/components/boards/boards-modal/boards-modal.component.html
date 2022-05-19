@@ -2,28 +2,25 @@
   <div class="formgrid grid">
     <div class="field col-6">
       <label for="title" i18n="@@title">Title</label>
-      <input
-        id="title"
-        type="text"
-        formControlName="title"
-        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-      />
+      <input pInputText id="title" type="text" [formControl]="title"
+        class="text-base text-color surface-overlay p-2 border-round appearance-none outline-none focus:border-primary w-full" />
+      <small *ngIf="title.hasError('required') && !title.untouched" id="title-help" class="p-error block">Title is
+        required.</small>
+      <small *ngIf="title.hasError('minlength') && !title.untouched" id="title-help" class="p-error block">Minimum 6
+        characters.</small>
     </div>
     <div class="field col-6">
       <label for="description" i18n="@@Descrip">Description</label>
-      <input
-        id="description"
-        type="text"
-        formControlName="description"
-        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-      />
+      <input pInputText id="description" type="text" [formControl]="description"
+        class="text-base text-color surface-overlay p-2 border-round appearance-none outline-none focus:border-primary w-full" />
+      <small *ngIf="description.hasError('required') && !description.untouched" id="title-help"
+        class="p-error block">Description is
+        required.</small>
+      <small *ngIf="description.hasError('minlength') && !description.untouched" id="title-help"
+        class="p-error block">Minimum 20
+        characters.</small>
     </div>
   </div>
-  <button
-    pButton
-    type="submit"
-    label="Create"
-    i18n-label="@@createbtn"
-    class="p-button-raised p-button-rounded"
-  ></button>
+  <button pButton type="submit" label="Submit" i18n-label="@@createbtn" class="p-button-raised p-button-rounded"
+    [disabled]="modalForm.invalid"></button>
 </form>
