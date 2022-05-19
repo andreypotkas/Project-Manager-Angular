@@ -19,6 +19,26 @@
     }
   }
 
+  .localize {
+    display: flex;
+
+    .red {
+      background: red;
+    }
+
+    a {
+      background: #3f51b5;
+      width: 42px;
+      height: 42px;
+      display: block;
+      border-radius: 100%;
+      text-decoration: none;
+      color: white;
+      text-align: center;
+      line-height: 42px;
+    }
+  }
+
   .auth-btns {
     display: flex;
     align-items: center;

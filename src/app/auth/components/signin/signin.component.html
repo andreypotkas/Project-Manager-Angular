@@ -4,19 +4,24 @@
   class="surface-card p-4 shadow-2 border-round"
 >
   <div class="text-center mb-5">
-    <div class="text-900 text-3xl font-medium mb-3">Welcome Back</div>
-    <span class="text-600 font-medium line-height-3"
+    <div class="text-900 text-3xl font-medium mb-3" i18n="@@welcomeback">
+      Welcome Back
+    </div>
+    <span i18n="@@donthaveacc" class="text-600 font-medium line-height-3"
       >Don't have an account?</span
     >
     <a
       class="font-medium no-underline ml-2 text-blue-500 cursor-pointer"
       routerLink="/authorization/signup"
+      i18n="@@create"
       >Create today!</a
     >
   </div>
 
   <div>
-    <label for="login" class="block text-900 font-medium mb-2">Login</label>
+    <label for="login" class="block text-900 font-medium mb-2" i18n="@@log-in"
+      >Login</label
+    >
     <input
       name="login"
       formControlName="login"
@@ -32,10 +37,12 @@
       "
       class="alert alert-danger"
     >
-      <div *ngIf="loginSignin?.errors?.['required']">Please enter a login</div>
+      <div *ngIf="loginSignin?.errors?.['required']" i18n="@@plsenterlogin">
+        Please enter a login
+      </div>
     </div>
 
-    <label for="password" class="block text-900 font-medium mb-2"
+    <label for="password" class="block text-900 font-medium mb-2" i18n="@@pass"
       >Password</label
     >
     <input
@@ -54,22 +61,15 @@
       "
       class="alert alert-danger"
     >
-      <div *ngIf="passwordSignin?.errors?.['required']">
+      <div *ngIf="passwordSignin?.errors?.['required']" i18n="@@plsenterpass">
         Please enter a password
       </div>
     </div>
 
     <div class="flex align-items-center justify-content-between mb-6">
-      <div class="flex align-items-center">
-        <p-checkbox
-          id="rememberme1"
-          [binary]="true"
-          styleClass="mr-2"
-        ></p-checkbox>
-        <label for="rememberme1" class="text-900">Remember me</label>
-      </div>
       <a
         class="font-medium no-underline ml-2 text-blue-500 text-right cursor-pointer"
+        i18n="@@forgotpass"
         >Forgot password?</a
       >
     </div>
@@ -79,6 +79,7 @@
       pButton
       pRipple
       label="Sign In"
+      i18n-label="@@login"
       icon="pi pi-user"
       class="w-full"
     ></button>
