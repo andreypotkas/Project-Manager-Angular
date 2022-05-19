@@ -7,8 +7,8 @@
   <div class="button-container">
     <button pButton icon="pi pi-link" i18n-label="@@addcolumn" label="Add column" (click)="displayModalNewColumn = true"
       class="add-button"></button>
-    <button *ngIf="columns.length > 0" pButton icon="pi pi-link" label="Add task" (click)="displayModalNewTask = true"
-      class="add-button"></button>
+    <button *ngIf="columns.length > 0" pButton icon="pi pi-link" i18n-label="@@addtask" label="Add task"
+      (click)="displayModalNewTask = true" class="add-button"></button>
   </div>
   <div class="columns-list" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="dropColumn($event)"
     [cdkDropListData]="columns" cdkDropListGroup>

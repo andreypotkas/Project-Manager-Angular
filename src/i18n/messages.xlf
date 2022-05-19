@@ -184,39 +184,53 @@
         <source>Add column</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/boards/components/board/board.component.html</context>
-          <context context-type="linenumber">12,13</context>
+          <context context-type="linenumber">8</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/boards/components/board/board.component.html</context>
-          <context context-type="linenumber">44,45</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="addtask" datatype="html">
+        <source>Add task</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boards/components/board/board.component.html</context>
+          <context context-type="linenumber">10,11</context>
         </context-group>
       </trans-unit>
       <trans-unit id="titleofcolumn" datatype="html">
         <source>Title of column</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/boards/components/board/board.component.html</context>
-          <context context-type="linenumber">54,57</context>
+          <context context-type="linenumber">48,49</context>
         </context-group>
       </trans-unit>
       <trans-unit id="add" datatype="html">
         <source>Add</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/boards/components/board/board.component.html</context>
-          <context context-type="linenumber">85</context>
+          <context context-type="linenumber">56</context>
         </context-group>
       </trans-unit>
       <trans-unit id="searchby" datatype="html">
         <source>Search by title</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/boards/components/boards/boards.component.html</context>
-          <context context-type="linenumber">19,20</context>
+          <context context-type="linenumber">7,8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="createboard" datatype="html">
+        <source>Create board</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boards/components/boards/boards.component.html</context>
+          <context context-type="linenumber">10</context>
         </context-group>
       </trans-unit>
       <trans-unit id="gotoboard" datatype="html">
         <source>Go to board</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/boards/components/boards/boards.component.html</context>
-          <context context-type="linenumber">35,36</context>
+          <context context-type="linenumber">22</context>
         </context-group>
       </trans-unit>
       <trans-unit id="srcfooter" datatype="html">
