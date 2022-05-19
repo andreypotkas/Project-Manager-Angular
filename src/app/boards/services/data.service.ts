@@ -77,6 +77,38 @@ export class DataService {
     );
   }
 
+  deleteTask(
+    boardId: string,
+    columnId: string,
+    column: ColumnItemResponse,
+    task: TaskItemResponse
+  ) {
+    return this.taskService.deleteTask(boardId, columnId, task.id).pipe(
+      mergeMap((resp) => {
+        const changeTasksOrderRequests = column.tasks
+          .filter((item) => item.order > task.order)
+          .map((item) => {
+            return this.taskService.updateTask(
+              this.board.id,
+              columnId,
+              item.id,
+              {
+                title: item.title,
+                done: item.done,
+                order: item.order - 1,
+                description: item.description,
+                userId: item.userId,
+                boardId: boardId,
+                columnId: columnId,
+              }
+            );
+          });
+
+        return forkJoin([...changeTasksOrderRequests, of(resp)]);
+      })
+    );
+  }
+
   replaceColumn(previousOrder: number, newOrder: number) {
     const column = this.board.columns[previousOrder - 1];
     if (newOrder < previousOrder) {

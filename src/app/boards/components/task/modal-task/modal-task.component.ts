@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -19,6 +19,12 @@ export type ModalType = 'edit' | 'create';
 export class ModalTaskComponent implements OnInit {
   public modalForm: FormGroup;
   mode: ModalType = 'edit';
+  title = new FormControl('', [Validators.required, Validators.minLength(6)]);
+  description = new FormControl('', [
+    Validators.required,
+    Validators.minLength(20),
+  ]);
+  done = new FormControl(false, [Validators.required]);
 
   constructor(
     private ref: DynamicDialogRef,
@@ -26,10 +32,9 @@ export class ModalTaskComponent implements OnInit {
     private taskService: TasksService
   ) {
     this.modalForm = new FormGroup({
-      title: new FormControl('', [Validators.required]),
-      description: new FormControl('', [Validators.required]),
-      order: new FormControl(null, [Validators.required]),
-      done: new FormControl(false, [Validators.required]),
+      title: this.title,
+      description: this.description,
+      done: this.done,
     });
   }
 
@@ -41,28 +46,13 @@ export class ModalTaskComponent implements OnInit {
     return this.mode === 'create';
   }
 
-  createTask(): void {
-    const taskData = {
-      boardId: this.config.data.boardId,
-      columnId: this.config.data.columnId,
-      userId: this.config.data.userId,
-    };
-    this.taskService
-      .addTask(taskData.boardId, taskData.columnId, {
-        ...this.modalForm.value,
-        userId: taskData.userId,
-      })
-      .subscribe((task: TaskItemResponse) => {
-        this.ref.close(task);
-      });
-  }
-
   editTask(): void {
     const taskId = this.config.data.task.id;
     const taskData: UpdateTaskItem = {
       userId: this.config.data.userId,
       boardId: this.config.data.boardId,
       columnId: this.config.data.columnId,
+      order: this.config.data.task.order,
       ...this.modalForm.value,
     };
 
@@ -79,7 +69,6 @@ export class ModalTaskComponent implements OnInit {
         this.editTask();
         return;
       }
-      this.createTask();
     }
   }
 
@@ -90,7 +79,6 @@ export class ModalTaskComponent implements OnInit {
       this.modalForm.setValue({
         title: task.title,
         description: task.description,
-        order: task.order,
         done: task.done,
       });
     }
