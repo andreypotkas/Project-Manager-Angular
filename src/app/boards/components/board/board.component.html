@@ -66,7 +66,7 @@
   [style]="{ width: '340px' }" [draggable]="false" [breakpoints]="{ '400px': '90vw' }" [resizable]="false">
   <div class="field">
     <p-dropdown class="new-task-dropdown" [options]="columns" [formControl]="taskColumnId" optionLabel="title"
-      optionValue="id" placeholder="Choose column for new task" i18n-placeholder="@choosecolumn"></p-dropdown>
+      optionValue="id" placeholder="Choose column for task" i18n-placeholder="@choosecolumn"></p-dropdown>
   </div>
   <div class="field">
     <label for="taskTitle" class="block" i18n="@@titleoftask">Title of task</label>
@@ -78,7 +78,7 @@
   </div>
   <div class="field">
     <label for="taskDescription" class="block" i18n="@@Descrip">Description</label>
-    <textarea id="taskDescription" [formControl]="taskDescription" rows="5" cols="30" pInputTextarea></textarea>
+    <textarea id="taskDescription" [formControl]="taskDescription" rows="5" cols="23" pInputTextarea></textarea>
     <small *ngIf="taskDescription.hasError('required') && !taskDescription.untouched" id="title-help"
       class="p-error block">Title is required.</small>
     <small *ngIf="
@@ -91,5 +91,5 @@
   </ng-template>
 </p-dialog>
 <p-toast></p-toast>
-<p-confirmDialog [style]="{ width: '50vw' }" [baseZIndex]="10000" defaultFocus="reject"
-  rejectButtonStyleClass="p-button-text"></p-confirmDialog>
+<p-confirmDialog [style]="{ width: '400px' }" [breakpoints]="{'500px': '90vw'}" [baseZIndex]="10000"
+  defaultFocus="reject" rejectButtonStyleClass="p-button-text"></p-confirmDialog>

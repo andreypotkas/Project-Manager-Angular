@@ -189,7 +189,7 @@ export class DataService {
           done: task.done,
           order: -1,
           description: task.description,
-          userId: this.authService.getUserId() || '',
+          userId: task.userId,
           boardId: this.board.id,
           columnId: column.id,
         })
@@ -210,7 +210,7 @@ export class DataService {
                     done: item.done,
                     order: item.order + 1,
                     description: item.description,
-                    userId: this.authService.getUserId() || '',
+                    userId: item.userId,
                     boardId: this.board.id,
                     columnId: column.id,
                   }
@@ -223,7 +223,7 @@ export class DataService {
                 done: task.done,
                 order: newOrder,
                 description: task.description,
-                userId: this.authService.getUserId() || '',
+                userId: task.userId,
                 boardId: this.board.id,
                 columnId: column.id,
               })
@@ -240,7 +240,7 @@ export class DataService {
           done: task.done,
           order: -1,
           description: task.description,
-          userId: this.authService.getUserId() || '',
+          userId: task.userId,
           boardId: this.board.id,
           columnId: column.id,
         })
@@ -260,7 +260,7 @@ export class DataService {
                     done: item.done,
                     order: item.order - 1,
                     description: item.description,
-                    userId: this.authService.getUserId() || '',
+                    userId: item.userId,
                     boardId: this.board.id,
                     columnId: column.id,
                   }
@@ -273,7 +273,7 @@ export class DataService {
                 done: task.done,
                 order: newOrder,
                 description: task.description,
-                userId: this.authService.getUserId() || '',
+                userId: task.userId,
                 boardId: this.board.id,
                 columnId: column.id,
               })
@@ -306,7 +306,7 @@ export class DataService {
         done: task.done,
         order: currentOrder,
         description: task.description,
-        userId: this.authService.getUserId() || '',
+        userId: task.userId,
         boardId: this.board.id,
         columnId: currentColumn!.id,
       })
@@ -324,7 +324,7 @@ export class DataService {
                   done: item.done,
                   order: item.order - 1,
                   description: item.description,
-                  userId: this.authService.getUserId() || '',
+                  userId: item.userId,
                   boardId: this.board.id,
                   columnId: previousColumn!.id,
                 }
@@ -343,7 +343,7 @@ export class DataService {
                   done: item.done,
                   order: item.order + 1,
                   description: item.description,
-                  userId: this.authService.getUserId() || '',
+                  userId: item.userId,
                   boardId: this.board.id,
                   columnId: currentColumn!.id,
                 }

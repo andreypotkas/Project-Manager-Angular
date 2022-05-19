@@ -94,7 +94,7 @@ export class TaskComponent implements OnInit {
         mode: 'edit',
       },
       header: `${this.edit}`,
-      width: '50%',
+      width: 'calc(260px + 20vw)',
     });
 
     this.dialogRef.onClose.subscribe((task: TaskItemResponse) => {

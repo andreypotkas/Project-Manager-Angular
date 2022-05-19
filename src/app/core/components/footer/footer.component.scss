@@ -1,5 +1,6 @@
 :host {
   display: flex;
+  flex-wrap: wrap;
   flex: 0 0 auto;
   justify-content: space-between;
   background-color: #fff;
@@ -12,7 +13,9 @@
 
   .team-githubs {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
+    padding: 5px;
     column-gap: 20px;
 
     a {
@@ -20,6 +23,19 @@
       align-items: center;
       text-decoration: none;
       column-gap: 10px;
+    }
+  }
+}
+
+@media (max-width: 550px) {
+  a {
+    img {
+      width: 20px;
+      height: 20px;
+    }
+
+    .rs {
+      width: 60px;
     }
   }
 }

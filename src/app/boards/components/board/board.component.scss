@@ -156,6 +156,11 @@
   }
 }
 
+.drag-handle {
+  width: 30px;
+  cursor: move;
+}
+
 .cdk-drag-preview {
   box-sizing: border-box;
   background-color: #fff;
