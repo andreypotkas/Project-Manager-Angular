@@ -12,7 +12,8 @@
     "stylelint": "stylelint **/*{.css,.scss}",
     "stylelint:fix": "stylelint **/*{.css,.scss} --fix",
     "precommit": "lint-staged",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "extract-i18n-merge": "ng run project-management-app:extract-i18n-merge"
   },
   "private": true,
   "dependencies": {
@@ -28,6 +29,7 @@
     "@angular/platform-browser": "~13.3.0",
     "@angular/platform-browser-dynamic": "~13.3.0",
     "@angular/router": "~13.3.0",
+    "@ngx-i18nsupport/ngx-i18nsupport": "^1.1.6",
     "angular-i18n": "^1.8.3",
     "firebase-tools": "^10.9.2",
     "g": "^2.0.1",
@@ -62,6 +64,7 @@
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
     "lint-staged": "^12.4.1",
+    "ng-extract-i18n-merge": "^1.4.0",
     "prettier": "^2.6.2",
     "stylelint": "^14.8.0",
     "stylelint-config-idiomatic-order": "^8.1.0",

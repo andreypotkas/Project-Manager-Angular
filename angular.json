@@ -131,6 +131,14 @@
           "options": {
             "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
           }
+        },
+        "extract-i18n-merge": {
+          "builder": "ng-extract-i18n-merge:ng-extract-i18n-merge",
+          "options": {
+            "format": "xlf",
+            "outputPath": "src/i18n",
+            "targetFiles": ["messages.ru.xlf", "messages.xlf"]
+          }
         }
       }
     }
