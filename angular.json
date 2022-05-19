@@ -23,7 +23,8 @@
       "i18n": {
         "sourceLocale": "en-US",
         "locales": {
-          "ru": "src/i18n/messages.ru.xlf"
+          "ru": "src/i18n/messages.ru.xlf",
+          "en": "src/i18n/messages.xlf"
         }
       },
       "architect": {
@@ -52,11 +53,12 @@
               "localize": ["ru"]
             },
             "production": {
+              "localize": ["ru", "en"],
               "budgets": [
                 {
                   "type": "initial",
                   "maximumWarning": "2000kb",
-                  "maximumError": "2mb"
+                  "maximumError": "3mb"
                 },
                 {
                   "type": "anyComponentStyle",

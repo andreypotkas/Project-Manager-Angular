@@ -59,12 +59,15 @@ export class TaskComponent {
         });
       }
 
-      this.boardsService
-        .getBoardById(this.route.snapshot.params['id'])
-        .pipe(take(1))
-        .subscribe((board) => {
-          this.dataService.board$.next(board);
-        });
+      // this.boardsService
+      //   .getBoardById(this.route.snapshot.params['id'])
+      //   .subscribe((board) => {
+      //     this.dataService.board$.next(board);
+      //   });
+
+      setTimeout(() => {
+        this.getBoard();
+      }, 1000);
     });
   }
 
@@ -82,12 +85,16 @@ export class TaskComponent {
               summary: 'Confirmed',
               detail: 'Task deleted',
             });
-            this.boardsService
-              .getBoardById(this.route.snapshot.params['id'])
-              .pipe(take(1))
-              .subscribe((board) => {
-                this.dataService.board$.next(board);
-              });
+
+            // this.boardsService
+            //   .getBoardById(this.route.snapshot.params['id'])
+            //   .subscribe((board) => {
+            //     this.dataService.board$.next(board);
+            //   });
+
+            setTimeout(() => {
+              this.getBoard();
+            }, 1000);
           });
       },
       reject: (type: ConfirmEventType) => {
@@ -133,14 +140,22 @@ export class TaskComponent {
         });
       }
 
-      this.boardsService
-        .getBoardById(this.route.snapshot.params['id'])
-        .pipe(take(1))
-        .subscribe((board) => {
-          this.dataService.board$.next(board);
-          //TODO
-          // this.loading = false;
-        });
+      // this.boardsService
+      //   .getBoardById(this.route.snapshot.params['id'])
+      //   .subscribe((board) => {
+      //     this.dataService.board$.next(board);
+      //TODO
+      // this.loading = false;
+      // });
+
+      setTimeout(() => {
+        this.getBoard();
+      }, 1000);
     });
+  }
+
+  getBoard() {
+    const boardId = this.route.snapshot.params['id'];
+    this.dataService.getCurrentBoard(boardId).subscribe();
   }
 }

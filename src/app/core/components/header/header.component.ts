@@ -21,10 +21,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.stateOptions = [
-      { value: 'en-Us', label: 'En' },
+      { value: 'en', label: 'En' },
       { value: 'ru', label: 'Ru' },
     ];
-    this.authService.checkToken();
     this.subscription = this.authService.isLogged.subscribe(
       (data) => (this.isLogged = data)
     );

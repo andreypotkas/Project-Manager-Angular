@@ -1,44 +1,50 @@
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import {
-  MessageService,
   ConfirmationService,
   ConfirmEventType,
+  MessageService,
 } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { catchError, throwError } from 'rxjs';
 import { ColumnItemResponse } from '../../models/columnItem.model';
-import { TaskItemResponse } from '../../models/taskItem.model';
 import { ColumnsService } from '../../services/columns.service';
 import { DataService } from '../../services/data.service';
 
 @Component({
-  selector: 'app-column',
-  templateUrl: './column.component.html',
-  styleUrls: ['./column.component.scss'],
+  selector: 'app-column-header',
+  templateUrl: './column-header.component.html',
+  styleUrls: ['./column-header.component.scss'],
   providers: [DialogService, MessageService],
 })
-export class ColumnComponent {
+export class ColumnHeaderComponent {
   @Input() column!: ColumnItemResponse;
 
-  @Input() boardId!: string;
-
-  loading = false;
-
-  title = new FormControl('', [Validators.required]);
+  @Output() loadingColumnEvent = new EventEmitter<{
+    loading: boolean;
+    columnId: string;
+  }>();
 
   editMode = false;
 
+  titleColumn = new FormControl('', [Validators.required]);
+
+  boardId = this.route.snapshot.params['id'];
+
   constructor(
-    private columnService: ColumnsService,
-    private route: ActivatedRoute,
-    private dataService: DataService,
     private confirmationService: ConfirmationService,
-    private messageService: MessageService
+    private dataService: DataService,
+    private messageService: MessageService,
+    private route: ActivatedRoute,
+    private columnService: ColumnsService
   ) {}
+
+  onTitlePress(column: ColumnItemResponse) {
+    this.titleColumn.setValue(column.title);
+    if (!this.editMode) this.editMode = true;
+  }
 
   onPressDeleteColumn(column: ColumnItemResponse) {
     this.confirmationService.confirm({
@@ -60,7 +66,7 @@ export class ColumnComponent {
           )
           .subscribe(() => {
             setTimeout(() => {
-              this.getBoard();
+              this.getBoardOfColumn();
             }, 1000);
             this.messageService.add({
               severity: 'success',
@@ -83,35 +89,36 @@ export class ColumnComponent {
     });
   }
 
-  getBoard() {
-    this.loading = true;
+  getBoardOfColumn() {
+    // this.loadingColumn = true;
+    this.loadingColumnEvent.emit({ loading: true, columnId: this.column.id });
     const boardId = this.route.snapshot.params['id'];
     this.dataService.getCurrentBoard(boardId).subscribe(() => {
-      this.loading = false;
+      // this.loadingColumn = false;
+      this.loadingColumnEvent.emit({
+        loading: false,
+        columnId: this.column.id,
+      });
       this.editMode = false;
     });
   }
 
-  onTitlePress() {
-    this.title.setValue(this.column.title);
-    if (!this.editMode) this.editMode = true;
-  }
-
-  closeEditMode() {
-    this.editMode = false;
-  }
-
-  changeColumnTitle() {
-    this.loading = true;
+  changeColumnTitle(column: ColumnItemResponse) {
+    // this.loadingColumn = true;
+    this.loadingColumnEvent.emit({ loading: true, columnId: this.column.id });
     this.columnService
-      .updateColumn(this.boardId, this.column.id, {
-        title: this.title.value,
-        order: this.column.order,
+      .updateColumn(this.boardId, column.id, {
+        title: this.titleColumn.value,
+        order: column.order,
       })
       .pipe(
         catchError((error: HttpErrorResponse) => {
           this.editMode = false;
-          this.loading = false;
+          // this.loadingColumn = false;
+          this.loadingColumnEvent.emit({
+            loading: false,
+            columnId: this.column.id,
+          });
           this.messageService.add({
             severity: 'error',
             summary: 'Error',
@@ -122,7 +129,7 @@ export class ColumnComponent {
       )
       .subscribe(() => {
         setTimeout(() => {
-          this.getBoard();
+          this.getBoardOfColumn();
         }, 1000);
         this.messageService.add({
           severity: 'success',
@@ -132,36 +139,7 @@ export class ColumnComponent {
       });
   }
 
-  dropTask(event: CdkDragDrop<TaskItemResponse[]>, column: ColumnItemResponse) {
-    if (event.previousIndex === event.currentIndex) return;
-
-    this.dataService
-      .replaceTask(event.previousIndex + 1, event.currentIndex + 1, column)
-      .pipe(
-        catchError((error: HttpErrorResponse) => {
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Error',
-            detail: `Task not replaced. Error: ${error.message}`,
-          });
-          return throwError(() => new Error(error.message));
-        })
-      )
-      .subscribe(() => {
-        setTimeout(() => {
-          this.getBoard();
-        }, 1000);
-        this.messageService.add({
-          severity: 'info',
-          summary: 'Confirmed',
-          detail: 'Task replaced',
-        });
-      });
-
-    moveItemInArray(
-      event.container.data,
-      event.previousIndex,
-      event.currentIndex
-    );
+  closeEditMode() {
+    this.editMode = false;
   }
 }

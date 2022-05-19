@@ -55,7 +55,6 @@ export class SignupComponent {
               detail: `Please, choose another login.`,
             });
           } else if (e.status === 400) {
-            console.log(e);
             this.messageService.add({
               severity: 'error',
               summary: `${e.error.message[0]}!`,

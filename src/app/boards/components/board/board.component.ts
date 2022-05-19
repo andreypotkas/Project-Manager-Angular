@@ -1,36 +1,81 @@
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import {
+  CdkDragDrop,
+  moveItemInArray,
+  transferArrayItem,
+} from '@angular/cdk/drag-drop';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { MessageService, ConfirmationService } from 'primeng/api';
-import { catchError, Observable, of, throwError } from 'rxjs';
+import {
+  ConfirmationService,
+  ConfirmEventType,
+  MessageService,
+} from 'primeng/api';
+import { DialogService } from 'primeng/dynamicdialog';
+import { catchError, Observable, throwError } from 'rxjs';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { BoardItemResponse } from '../../models/boardItem.model';
 import { ColumnItemResponse } from '../../models/columnItem.model';
+import { CreateTaskItem, TaskItemResponse } from '../../models/taskItem.model';
 import { ColumnsService } from '../../services/columns.service';
 import { DataService } from '../../services/data.service';
+import { TasksService } from '../../services/task.service';
 
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.scss'],
-  providers: [MessageService],
+  providers: [DialogService, MessageService],
 })
 export class BoardComponent implements OnInit {
   loading = true;
 
-  displayModal = false;
+  displayModalNewColumn = false;
+
+  displayModalNewTask = false;
 
   title = new FormControl('', [Validators.required, Validators.minLength(6)]);
 
+  taskTitle = new FormControl('', [
+    Validators.required,
+    Validators.minLength(6),
+  ]);
+
+  taskDescription = new FormControl('', [
+    Validators.required,
+    Validators.minLength(20),
+  ]);
+
+  taskColumnId = new FormControl(null, [Validators.required]);
+
+  taskForm!: FormGroup;
+
   columns!: ColumnItemResponse[];
+
+  boardId = this.route.snapshot.params['id'];
+
+  loadingColumn = false;
+
+  loadingColumnId = '';
+
+  editMode = false;
 
   constructor(
     private route: ActivatedRoute,
     private columnService: ColumnsService,
     private dataService: DataService,
-    private messageService: MessageService
-  ) {}
+    private messageService: MessageService,
+    private tasksService: TasksService,
+    private authService: AuthService,
+    private confirmationService: ConfirmationService
+  ) {
+    this.taskForm = new FormGroup({
+      taskTitle: this.taskTitle,
+      taskDescription: this.taskDescription,
+      taskColumnId: this.taskColumnId,
+    });
+  }
 
   ngOnInit() {
     this.getBoard();
@@ -55,7 +100,7 @@ export class BoardComponent implements OnInit {
       })
       .pipe(
         catchError((error: HttpErrorResponse) => {
-          this.displayModal = false;
+          this.displayModalNewColumn = false;
           this.loading = false;
           this.messageService.add({
             severity: 'error',
@@ -67,13 +112,51 @@ export class BoardComponent implements OnInit {
       )
       .subscribe(() => {
         this.getBoard();
-        this.displayModal = false;
+        this.displayModalNewColumn = false;
         this.loading = false;
         this.title.reset();
         this.messageService.add({
           severity: 'success',
           summary: 'Confirmed',
           detail: 'Column Created',
+        });
+      });
+  }
+
+  addTask() {
+    this.loading = true;
+    const taskColumnId = this.taskColumnId.value;
+    const newTaskOrder = this.getNewTaskOrder(taskColumnId);
+    const newTask: CreateTaskItem = {
+      title: this.taskTitle.value,
+      done: false,
+      order: newTaskOrder,
+      description: this.taskDescription.value,
+      userId: this.authService.getUserId() || '',
+    };
+    this.tasksService
+      .addTask(this.dataService.board.id, taskColumnId, newTask)
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          this.displayModalNewTask = false;
+          this.loading = false;
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: `Task not added. Error: ${error.message}`,
+          });
+          return throwError(() => new Error(error.message));
+        })
+      )
+      .subscribe(() => {
+        this.getBoard();
+        this.displayModalNewTask = false;
+        this.loading = false;
+        this.taskForm.reset();
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Confirmed',
+          detail: 'Task Created',
         });
       });
   }
@@ -90,6 +173,19 @@ export class BoardComponent implements OnInit {
     return (
       this.dataService.board.columns.reduce(
         (acc, column) => (acc > column.order ? acc : column.order),
+        0
+      ) + 1
+    );
+  }
+
+  getNewTaskOrder(columnId: string) {
+    const column = this.dataService.board.columns.find(
+      (column) => column.id === columnId
+    );
+    if (column === undefined) return 1;
+    return (
+      column.tasks.reduce(
+        (acc, task) => (acc > task.order ? acc : task.order),
         0
       ) + 1
     );
@@ -124,5 +220,162 @@ export class BoardComponent implements OnInit {
       event.previousIndex,
       event.currentIndex
     );
+  }
+
+  // onPressDeleteColumn(column: ColumnItemResponse) {
+  //   this.confirmationService.confirm({
+  //     message: 'Do you want to delete this column?',
+  //     header: 'Delete Confirmation',
+  //     icon: 'pi pi-info-circle',
+  //     accept: () => {
+  //       this.dataService
+  //         .deleteColumn(column)
+  //         .pipe(
+  //           catchError((error: HttpErrorResponse) => {
+  //             this.messageService.add({
+  //               severity: 'error',
+  //               summary: 'Error',
+  //               detail: `Column not deleted. Error: ${error.message}`,
+  //             });
+  //             return throwError(() => new Error(error.message));
+  //           })
+  //         )
+  //         .subscribe(() => {
+  //           setTimeout(() => {
+  //             this.getBoardOfColumn();
+  //           }, 1000);
+  //           this.messageService.add({
+  //             severity: 'success',
+  //             summary: 'Confirmed',
+  //             detail: 'Column deleted',
+  //           });
+  //         });
+  //     },
+  //     reject: (type: ConfirmEventType) => {
+  //       switch (type) {
+  //         case ConfirmEventType.REJECT:
+  //           this.messageService.add({
+  //             severity: 'info',
+  //             summary: 'Cancelled',
+  //             detail: 'You have cancelled',
+  //           });
+  //           break;
+  //       }
+  //     },
+  //   });
+  // }
+
+  // getBoardOfColumn() {
+  //   this.loadingColumn = true;
+  //   const boardId = this.route.snapshot.params['id'];
+  //   this.dataService.getCurrentBoard(boardId).subscribe(() => {
+  //     this.loadingColumn = false;
+  //     this.editMode = false;
+  //   });
+  // }
+
+  // onTitlePress(column: ColumnItemResponse) {
+  //   this.titleColumn.setValue(column.title);
+  //   if (!this.editMode) this.editMode = true;
+  // }
+
+  // closeEditMode() {
+  //   this.editMode = false;
+  // }
+
+  // changeColumnTitle(column: ColumnItemResponse) {
+  //   this.loadingColumn = true;
+  //   this.columnService
+  //     .updateColumn(this.boardId, column.id, {
+  //       title: this.titleColumn.value,
+  //       order: column.order,
+  //     })
+  //     .pipe(
+  //       catchError((error: HttpErrorResponse) => {
+  //         this.editMode = false;
+  //         this.loadingColumn = false;
+  //         this.messageService.add({
+  //           severity: 'error',
+  //           summary: 'Error',
+  //           detail: `Column title don\`t updated. Error: ${error.message}`,
+  //         });
+  //         return throwError(() => new Error(error.message));
+  //       })
+  //     )
+  //     .subscribe(() => {
+  //       setTimeout(() => {
+  //         this.getBoardOfColumn();
+  //       }, 1000);
+  //       this.messageService.add({
+  //         severity: 'success',
+  //         summary: 'Updated',
+  //         detail: 'Column title updated',
+  //       });
+  //     });
+  // }
+
+  dropTask(event: CdkDragDrop<TaskItemResponse[]>, column: ColumnItemResponse) {
+    if (event.previousContainer === event.container) {
+      if (event.previousIndex === event.currentIndex) return;
+
+      this.dataService
+        .replaceTask(event.previousIndex + 1, event.currentIndex + 1, column)
+        .pipe(
+          catchError((error: HttpErrorResponse) => {
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: `Task not replaced. Error: ${error.message}`,
+            });
+            return throwError(() => new Error(error.message));
+          })
+        )
+        .subscribe(() => {
+          setTimeout(() => {
+            this.getBoard();
+          }, 1000);
+          this.messageService.add({
+            severity: 'info',
+            summary: 'Confirmed',
+            detail: 'Task replaced',
+          });
+        });
+
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    } else {
+      this.dataService
+        .replaceTaskBetweenColumns(event, column)
+        .pipe(
+          catchError((error: HttpErrorResponse) => {
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: `Task not replaced. Error: ${error.message}`,
+            });
+            return throwError(() => new Error(error.message));
+          })
+        )
+        .subscribe(() => {
+          setTimeout(() => {
+            this.getBoard();
+          }, 1000);
+          this.messageService.add({
+            severity: 'info',
+            summary: 'Confirmed',
+            detail: 'Task replaced',
+          });
+        });
+
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    }
   }
 }

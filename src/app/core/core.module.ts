@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from '../app-routing.module';
 import { HeaderComponent } from './components/header/header.component';
-// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
@@ -18,12 +17,15 @@ import { DialogModule } from '../dialog/dialog.module';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { FormsModule } from '@angular/forms';
 import { SelectButtonModule } from 'primeng/selectbutton';
+import { StickyDirective } from './directives/sticky.directive';
+
 @NgModule({
   declarations: [
     HeaderComponent,
     WelcomeComponent,
     FooterComponent,
     NotFoundPageComponent,
+    StickyDirective,
   ],
   imports: [
     CommonModule,
@@ -46,8 +48,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
     MessageModule,
     DialogModule,
     DragDropModule,
-    // StyleClassModule,
-    // BrowserAnimationsModule,
+    StickyDirective,
   ],
 })
 export class CoreModule {}

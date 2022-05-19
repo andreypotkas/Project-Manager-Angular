@@ -15,6 +15,10 @@ export class AuthService {
     this.token = localStorage.getItem('token')
       ? localStorage.getItem('token')
       : '';
+
+    if (localStorage.getItem('token')) {
+      this.isLogged.next(true);
+    }
   }
   public checkToken(): void {
     if (localStorage.getItem('token')) {
@@ -66,8 +70,9 @@ export class AuthService {
   }
   public logout(): void {
     localStorage.removeItem('token');
-    this.router.navigate(['/welcome']);
     this.isLogged.next(false);
+    this.token = '';
+    this.router.navigate(['/welcome']);
   }
 
   public getUserToken(): string {
