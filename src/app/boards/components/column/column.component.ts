@@ -22,6 +22,8 @@ import { DataService } from '../../services/data.service';
   providers: [DialogService, MessageService],
 })
 export class ColumnComponent {
+  message: string = $localize`Do you want to delete this board?`;
+  delete: string = $localize`Delete Confirmation`;
   @Input() column!: ColumnItemResponse;
 
   @Input() boardId!: string;
@@ -42,8 +44,8 @@ export class ColumnComponent {
 
   onPressDeleteColumn(column: ColumnItemResponse) {
     this.confirmationService.confirm({
-      message: 'Do you want to delete this column?',
-      header: 'Delete Confirmation',
+      message: `${this.message}`,
+      header: `${this.delete}`,
       icon: 'pi pi-info-circle',
       accept: () => {
         this.dataService

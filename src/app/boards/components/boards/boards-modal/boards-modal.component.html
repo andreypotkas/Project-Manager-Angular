@@ -1,7 +1,7 @@
 <form [formGroup]="modalForm" (ngSubmit)="onSubmit()">
   <div class="formgrid grid">
     <div class="field col-6">
-      <label for="title">Title</label>
+      <label for="title" i18n="@@title">Title</label>
       <input
         id="title"
         type="text"
@@ -10,7 +10,7 @@
       />
     </div>
     <div class="field col-6">
-      <label for="description">Description</label>
+      <label for="description" i18n="@@Descrip">Description</label>
       <input
         id="description"
         type="text"
@@ -22,7 +22,8 @@
   <button
     pButton
     type="submit"
-    label="Submit"
+    label="Create"
+    i18n-label="@@createbtn"
     class="p-button-raised p-button-rounded"
   ></button>
 </form>

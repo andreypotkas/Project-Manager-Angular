@@ -26,6 +26,8 @@ export class EditProfileComponent {
     login: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
   });
+  message: string = $localize`Do you want to delete this board?`;
+  deleteMessage: string = $localize`Delete Confirmation`;
   private subscription!: Subscription;
   constructor(
     private authService: AuthService,
@@ -67,8 +69,8 @@ export class EditProfileComponent {
   }
   delete() {
     this.confirmationService.confirm({
-      message: 'Do you want to delete your account?',
-      header: 'Delete Confirmation',
+      message: `${this.message}`,
+      header: `${this.deleteMessage}`,
       icon: 'pi pi-info-circle',
       accept: () => {
         this.authService

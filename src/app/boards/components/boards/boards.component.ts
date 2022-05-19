@@ -20,7 +20,11 @@ import { BoardsModalComponent } from './boards-modal/boards-modal.component';
 })
 export class BoardsComponent implements OnInit {
   loading: boolean = false;
+  edit: string = $localize`Edit board`;
+  create: string = $localize`Create board`;
   dialogRef: any;
+  message: string = $localize`Do you want to delete this board?`;
+  delete: string = $localize`Delete Confirmation`;
   constructor(
     private router: Router,
     private dataService: DataService,
@@ -56,7 +60,7 @@ export class BoardsComponent implements OnInit {
         board,
         mode: 'edit',
       },
-      header: 'Edit board',
+      header: `${this.edit}`,
       width: '50%',
     });
 
@@ -78,7 +82,7 @@ export class BoardsComponent implements OnInit {
       data: {
         mode: 'create',
       },
-      header: 'Create task',
+      header: `${this.create}`,
       width: '50%',
     });
 
@@ -98,8 +102,8 @@ export class BoardsComponent implements OnInit {
 
   deleteBoard(id: string) {
     this.confirmationService.confirm({
-      message: 'Do you want to delete this board?',
-      header: 'Delete Confirmation',
+      message: `${this.message}`,
+      header: `${this.delete}`,
       icon: 'pi pi-info-circle',
       accept: () => {
         this.boardsService.deleteBoard(id).subscribe(() => {
