@@ -92,11 +92,9 @@ export class ColumnHeaderComponent {
   }
 
   getBoardOfColumn() {
-    // this.loadingColumn = true;
     this.loadingColumnEvent.emit({ loading: true, columnId: this.column.id });
     const boardId = this.route.snapshot.params['id'];
     this.dataService.getCurrentBoard(boardId).subscribe(() => {
-      // this.loadingColumn = false;
       this.loadingColumnEvent.emit({
         loading: false,
         columnId: this.column.id,
@@ -106,7 +104,6 @@ export class ColumnHeaderComponent {
   }
 
   changeColumnTitle(column: ColumnItemResponse) {
-    // this.loadingColumn = true;
     this.loadingColumnEvent.emit({ loading: true, columnId: this.column.id });
     this.columnService
       .updateColumn(this.boardId, column.id, {
@@ -116,7 +113,6 @@ export class ColumnHeaderComponent {
       .pipe(
         catchError((error: HttpErrorResponse) => {
           this.editMode = false;
-          // this.loadingColumn = false;
           this.loadingColumnEvent.emit({
             loading: false,
             columnId: this.column.id,

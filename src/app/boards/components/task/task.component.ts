@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import {
   ConfirmationService,
@@ -6,11 +7,8 @@ import {
   MessageService,
 } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
-import { Observable, take } from 'rxjs';
-import { AuthService } from 'src/app/core/services/auth.service';
 import { ColumnItemResponse } from '../../models/columnItem.model';
 import { TaskItemResponse } from '../../models/taskItem.model';
-import { BoardsService } from '../../services/boards.service';
 import { DataService } from '../../services/data.service';
 import { TasksService } from '../../services/task.service';
 import { ModalTaskComponent } from './modal-task/modal-task.component';
@@ -21,7 +19,7 @@ import { ModalTaskComponent } from './modal-task/modal-task.component';
   styleUrls: ['./task.component.scss'],
   providers: [MessageService, ConfirmationService],
 })
-export class TaskComponent {
+export class TaskComponent implements OnInit {
   @Input() task!: TaskItemResponse;
   @Input() column!: ColumnItemResponse;
   @Input() boardId!: string;
@@ -30,49 +28,18 @@ export class TaskComponent {
   message: string = $localize`Do you want to delete this board?`;
   delete: string = $localize`Delete Confirmation`;
   create: string = $localize`Create task`;
+  done = new FormControl(true);
   constructor(
     private dialogService: DialogService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
-    private taskService: TasksService,
-    private boardsService: BoardsService,
+    private dataService: DataService,
     private route: ActivatedRoute,
-    private authService: AuthService,
-    private dataService: DataService
+    private taskService: TasksService
   ) {}
 
-  createTask(): void {
-    this.dialogRef = this.dialogService.open(ModalTaskComponent, {
-      data: {
-        mode: 'create',
-        columnId: this.column.id,
-        boardId: this.boardId,
-        userId: this.authService.getUserId(),
-      },
-      header: `${this.create}`,
-      width: '50%',
-    });
-
-    this.dialogRef.onClose.subscribe((task: TaskItemResponse) => {
-      if (task) {
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Success',
-          key: 'create',
-          detail: `Task created`,
-        });
-      }
-
-      // this.boardsService
-      //   .getBoardById(this.route.snapshot.params['id'])
-      //   .subscribe((board) => {
-      //     this.dataService.board$.next(board);
-      //   });
-
-      setTimeout(() => {
-        this.getBoard();
-      }, 1000);
-    });
+  ngOnInit() {
+    this.done.setValue(this.task.done);
   }
 
   deleteTask(taskId: string): void {
@@ -81,20 +48,15 @@ export class TaskComponent {
       header: `${this.delete}`,
       icon: 'pi pi-info-circle',
       accept: () => {
-        this.taskService
-          .deleteTask(this.boardId, this.column.id, taskId)
+        this.dataService
+          .deleteTask(this.boardId, this.column.id, this.column, this.task)
           .subscribe(() => {
             this.messageService.add({
               severity: 'info',
               summary: 'Confirmed',
               detail: 'Task deleted',
+              key: 'delete',
             });
-
-            // this.boardsService
-            //   .getBoardById(this.route.snapshot.params['id'])
-            //   .subscribe((board) => {
-            //     this.dataService.board$.next(board);
-            //   });
 
             setTimeout(() => {
               this.getBoard();
@@ -121,6 +83,7 @@ export class TaskComponent {
       },
     });
   }
+
   editTask(): void {
     this.dialogRef = this.dialogService.open(ModalTaskComponent, {
       data: {
@@ -144,14 +107,6 @@ export class TaskComponent {
         });
       }
 
-      // this.boardsService
-      //   .getBoardById(this.route.snapshot.params['id'])
-      //   .subscribe((board) => {
-      //     this.dataService.board$.next(board);
-      //TODO
-      // this.loading = false;
-      // });
-
       setTimeout(() => {
         this.getBoard();
       }, 1000);
@@ -161,5 +116,27 @@ export class TaskComponent {
   getBoard() {
     const boardId = this.route.snapshot.params['id'];
     this.dataService.getCurrentBoard(boardId).subscribe();
+  }
+
+  changeDone() {
+    console.log(this.done.value);
+    this.taskService
+      .updateTask(this.boardId, this.column.id, this.task.id, {
+        title: this.task.title,
+        done: this.done.value,
+        order: this.task.order,
+        description: this.task.description,
+        userId: this.task.userId,
+        boardId: this.boardId,
+        columnId: this.column.id,
+      })
+      .subscribe(() => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          key: 'edit',
+          detail: `Task: ${this.task.title} edited`,
+        });
+      });
   }
 }

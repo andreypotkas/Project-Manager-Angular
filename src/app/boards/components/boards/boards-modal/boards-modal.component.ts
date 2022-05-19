@@ -15,14 +15,19 @@ import { ModalType } from '../../task/modal-task/modal-task.component';
 export class BoardsModalComponent implements OnInit {
   public modalForm: FormGroup;
   mode: ModalType = 'edit';
+  title = new FormControl('', [Validators.required, Validators.minLength(6)]);
+  description = new FormControl('', [
+    Validators.required,
+    Validators.minLength(20),
+  ]);
   constructor(
     private ref: DynamicDialogRef,
     private config: DynamicDialogConfig,
     private boardsService: BoardsService
   ) {
     this.modalForm = new FormGroup({
-      title: new FormControl('', [Validators.required]),
-      description: new FormControl('', [Validators.required]),
+      title: this.title,
+      description: this.description,
     });
   }
   get isEditable(): boolean {

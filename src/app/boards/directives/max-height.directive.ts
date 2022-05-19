@@ -8,7 +8,7 @@ import {
 import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime, throttleTime } from 'rxjs/operators';
 
-const footerSize = 90;
+const footerSize = 120;
 
 @Directive({
   selector: '[appMaxHeight]',
