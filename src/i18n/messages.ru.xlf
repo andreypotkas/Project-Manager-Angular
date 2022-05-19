@@ -6,14 +6,17 @@
         <source>Create board</source>
         <target state="new">Создать доску</target>
       </trans-unit>
+      <trans-unit id="2807800733729323332" datatype="html">
+        <source>Yes</source>
+        <target state="new">Да</target>
+      </trans-unit>
       <trans-unit id="2859854315038210963" datatype="html">
         <source>Edit board</source>
         <target state="new">Изменить доску</target>
       </trans-unit>
-      <trans-unit id="3592230966174769162" datatype="html">
-        <source>add task</source>
-        <target state="new">Добавить задачу</target>
-        <note priority="1" from="description">@addtask</note>
+      <trans-unit id="3542042671420335679" datatype="html">
+        <source>No</source>
+        <target state="new">Нет</target>
       </trans-unit>
       <trans-unit id="5726691094023644029" datatype="html">
         <source>Edit task</source>
@@ -32,19 +35,14 @@
         <target state="new">Добавить задачу</target>
         <note priority="1" from="description">@addtask</note>
       </trans-unit>
-      <trans-unit id="6747129270083558035" datatype="html">
-        <source>Choose column for new task</source>
+      <trans-unit id="7107276165221013476" datatype="html">
+        <source>Choose column for task</source>
         <target state="new">Выберите колонку для задачи</target>
         <note priority="1" from="description">@choosecolumn</note>
       </trans-unit>
       <trans-unit id="8192258211003608112" datatype="html">
         <source>Create task</source>
         <target state="new">Создать задачу</target>
-      </trans-unit>
-      <trans-unit id="922482600342048186" datatype="html">
-        <source>Edit Task</source>
-        <target state="new">Редактировать задачу</target>
-        <note priority="1" from="description">@edittask</note>
       </trans-unit>
       <trans-unit id="add" datatype="html">
         <source>Add</source>
@@ -87,7 +85,7 @@
         <target state="new">Создать доску</target>
       </trans-unit>
       <trans-unit id="createbtn" datatype="html">
-        <source>Create</source>
+        <source>Submit</source>
         <target state="new">Создать</target>
       </trans-unit>
       <trans-unit id="Daniil" datatype="html">
@@ -99,8 +97,12 @@
         <target>Удалить</target>
       </trans-unit>
       <trans-unit id="delete" datatype="html">
-        <source>delete task</source>
+        <source>Delete task</source>
         <target state="new">Удалить</target>
+      </trans-unit>
+      <trans-unit id="descrequared" datatype="html">
+        <source>Description is required.</source>
+        <target state="new">Описание обязательно.</target>
       </trans-unit>
       <trans-unit id="Descrip" datatype="html">
         <source>Description:</source>
@@ -122,6 +124,11 @@
         <source>Edit profile</source>
         <target>Редактировать профиль</target>
       </trans-unit>
+      <trans-unit id="edittask" datatype="html">
+        <source>Edit Task</source>
+        <target state="new">Изменить</target>
+        <note priority="1" from="description">@edittask</note>
+      </trans-unit>
       <trans-unit id="gotoboard" datatype="html">
         <source>Go to board</source>
         <target>Перейти к доске</target>
@@ -142,13 +149,17 @@
         <source>Logout</source>
         <target>Выйти</target>
       </trans-unit>
+      <trans-unit id="minsixchar" datatype="html">
+        <source>Minimum 6 characters.</source>
+        <target state="new">Минимум 6 символов.</target>
+      </trans-unit>
+      <trans-unit id="mintwentychar" datatype="html">
+        <source>Minimum 20 characters.</source>
+        <target state="new">Минимум 20 символов.</target>
+      </trans-unit>
       <trans-unit id="name" datatype="html">
         <source>Name</source>
         <target>Имя</target>
-      </trans-unit>
-      <trans-unit id="order" datatype="html">
-        <source>order</source>
-        <target state="new">Номер</target>
       </trans-unit>
       <trans-unit id="pass" datatype="html">
         <source>Password</source>
@@ -213,6 +224,10 @@
       <trans-unit id="titleoftask" datatype="html">
         <source>Title of task</source>
         <target state="new">Название задания</target>
+      </trans-unit>
+      <trans-unit id="titlerequared" datatype="html">
+        <source>Title is required.</source>
+        <target state="new">Заголовок обязателен.</target>
       </trans-unit>
       <trans-unit id="update" datatype="html">
         <source>Update</source>

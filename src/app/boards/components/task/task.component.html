@@ -10,7 +10,7 @@
     </p-button>
   </div>
   <div class="done field-checkbox">
-    <label for="binary" *ngIf="done.value">Done</label>
+    <label for="binary" *ngIf="done.value" i18n="@@done">Done</label>
     <p-checkbox [formControl]="done" inputId="binary" [binary]="true" (onChange)="changeDone()"></p-checkbox>
   </div>
 </div>

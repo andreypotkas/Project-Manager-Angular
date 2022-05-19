@@ -28,6 +28,8 @@ export class TaskComponent implements OnInit {
   message: string = $localize`Do you want to delete this board?`;
   delete: string = $localize`Delete Confirmation`;
   create: string = $localize`Create task`;
+  yesLabel: string = $localize`Yes`;
+  noLabel: string = $localize`No`;
   done = new FormControl(true);
   constructor(
     private dialogService: DialogService,
@@ -46,6 +48,8 @@ export class TaskComponent implements OnInit {
     this.confirmationService.confirm({
       message: `${this.message}`,
       header: `${this.delete}`,
+      acceptLabel: `${this.yesLabel}`,
+      rejectLabel: `${this.noLabel}`,
       icon: 'pi pi-info-circle',
       accept: () => {
         this.dataService

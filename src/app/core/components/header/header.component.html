@@ -9,34 +9,17 @@
       {{ stateOptions[1].label }}
     </a>
   </div>
-  <button *ngIf="!isLogged" i18n="@@login" pButton routerLink="authorization">
-    Sign In
-  </button>
-  <button
-    i18n="@@registration"
-    *ngIf="!isLogged"
-    pButton
-    routerLink="authorization/signup"
-  >
+  <button *ngIf="!isLogged" i18n="@@login" pButton routerLink="authorization">Sign In</button>
+  <button i18n="@@registration" *ngIf="!isLogged" pButton routerLink="authorization/signup">
     Sign Up
   </button>
-  <button
-    i18n="@@editprofile"
-    *ngIf="isLogged"
-    pButton
-    routerLink="authorization/edit"
-  >
-    edit profile
+  <button i18n="@@editprofile" *ngIf="isLogged" pButton routerLink="authorization/edit">
+    Edit profile
   </button>
   <button i18n="@@home" *ngIf="isLogged" pButton routerLink="boards">
     Home
   </button>
-  <button
-    (click)="authService.logout()"
-    *ngIf="isLogged"
-    pButton
-    routerLink="authorization/signup"
-  >
+  <button (click)="authService.logout()" *ngIf="isLogged" pButton routerLink="authorization/signup">
     <span i18n="@@logout">Logout</span>
   </button>
 </div>

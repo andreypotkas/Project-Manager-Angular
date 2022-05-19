@@ -1,7 +1,7 @@
 :host {
   display: flex;
-  flex-wrap: wrap;
   flex: 0 0 auto;
+  flex-wrap: wrap;
   justify-content: space-between;
   background-color: #fff;
   box-shadow: 0 5px 5px -3px rgb(0 0 0 / 20%), 0 8px 10px 1px rgb(0 0 0 / 14%),
@@ -36,6 +36,7 @@
 
     .rs {
       width: 60px;
+      height: 25px;
     }
   }
 }

@@ -22,6 +22,8 @@ import { DataService } from '../../services/data.service';
 export class ColumnHeaderComponent {
   message: string = $localize`Do you want to delete this board?`;
   delete: string = $localize`Delete Confirmation`;
+  yesLabel: string = $localize`Yes`;
+  noLabel: string = $localize`No`;
   @Input() column!: ColumnItemResponse;
 
   @Output() loadingColumnEvent = new EventEmitter<{
@@ -52,6 +54,8 @@ export class ColumnHeaderComponent {
     this.confirmationService.confirm({
       message: `${this.message}`,
       header: `${this.delete}`,
+      acceptLabel: `${this.yesLabel}`,
+      rejectLabel: `${this.noLabel}`,
       icon: 'pi pi-info-circle',
       accept: () => {
         this.dataService

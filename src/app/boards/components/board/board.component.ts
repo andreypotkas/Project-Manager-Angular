@@ -7,11 +7,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import {
-  ConfirmationService,
-  ConfirmEventType,
-  MessageService,
-} from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { catchError, Observable, throwError } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth.service';
@@ -67,8 +63,7 @@ export class BoardComponent implements OnInit {
     private dataService: DataService,
     private messageService: MessageService,
     private tasksService: TasksService,
-    private authService: AuthService,
-    private confirmationService: ConfirmationService
+    private authService: AuthService
   ) {
     this.taskForm = new FormGroup({
       taskTitle: this.taskTitle,
