@@ -5,27 +5,27 @@
 - :two_men_holding_hands: It's team task. Our team included 3 people.
 
 ## Description
-I responsible for:
-- header
-- footer
-- authorization
-- welcome page
-- localization
-Use:
-- Components
-- Directives
-- Pipes
-- Services
-- Interceptors
-- Guards, canActivate, canLoad< canDeactivate
-- Modules, lazy loading
-- Forms, Reactive forms, Validators
-- HttpClient
-- RxJs, Marbles, Observables
-- NgRx, actions, reducers, effects, store
-- Angular Material
-- UI/UX PrimeNG
-- localization i18n
+#### I responsible for:
+  - header
+  - footer
+  - authorization
+  - welcome page
+  - localization
+#### Used in application:
+  - Components
+  - Directives
+  - Pipes
+  - Services
+  - Interceptors
+  - Guards, canActivate, canLoad< canDeactivate
+  - Modules, lazy loading
+  - Forms, Reactive forms, Validators
+  - HttpClient
+  - RxJs, Marbles, Observables
+  - NgRx, actions, reducers, effects, store
+  - Angular Material
+  - UI/UX PrimeNG
+  - localization i18n
 
 ## Functional
 The application has pages:
