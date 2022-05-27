@@ -22,7 +22,6 @@
   - Forms, Reactive forms, Validators
   - HttpClient
   - RxJs, Marbles, Observables
-  - NgRx, actions, reducers, effects, store
   - Angular Material
   - UI/UX PrimeNG
   - localization i18n
