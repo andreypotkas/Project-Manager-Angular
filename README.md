@@ -50,8 +50,8 @@ The application has pages:
 
 ## Deploy
 - App:
-- :globe_with_meridians: https://andreypotkas-rs-lang.netlify.app/
-- Deploy backend application on Heroku. Swagger with endpoints:
 - :globe_with_meridians: https://andreypotkas-project-manager.netlify.app/
+- Deploy backend application on Heroku. Swagger with endpoints:
+- :globe_with_meridians: https://canban-back.herokuapp.com/docs/
 
 
